@@ -1,5 +1,5 @@
 from lib2to3.pytree import Base
-from turtle import back
+# from turtle import back
 from pydantic import BaseModel
 from typing import List, Dict
 from enum import Enum
@@ -9,7 +9,7 @@ import os
 from datetime import datetime
 import phtml
 
-from tile import TargetElement, LinkElement, Tile
+from .tile import TargetElement, LinkElement, Tile
 
 
 class Mosaic(BaseModel):
@@ -43,14 +43,14 @@ class Mosaic(BaseModel):
         div = phtml.Div()
         for css_class in self.classes:
             div.add_class(css_class)
-        div.add_internal(phtml.Header(level=1, internal=self.title))
+        div.add_element(phtml.Header(level=1, internal=self.title))
         for tile in self.tiles:
             div.internal.append(tile.html)
         return div
 
         """
         
-        # div.add_internal(phtml.Header(
+        # div.add_element(phtml.Header(
         #     level=3,
         #     internal=f"Last updated: {datetime.strftime(self.last_updated, self.datetime_format)}")
         # )
@@ -85,8 +85,8 @@ class TrafficMosaic(Mosaic):
     def html(self):
         div = super().html
         div.add_class('traffic')
-        div.add_internal(phtml.Header(level=1, internal=self.title))
-        # div.add_internal(phtml.Header(
+        div.add_element(phtml.Header(level=1, internal=self.title))
+        # div.add_element(phtml.Header(
         #     level=3,
         #     internal=f"Last updated: {datetime.strftime(self.last_updated, self.datetime_format)}")
         # )
@@ -115,8 +115,8 @@ class IFSCMosaic(Mosaic):
     def html(self):
         div = super().html
         div.add_class('mosaic-ifsc')
-        div.add_internal(phtml.Header(level=1, internal=self.title))
-        # div.add_internal(phtml.Header(
+        div.add_element(phtml.Header(level=1, internal=self.title))
+        # div.add_element(phtml.Header(
         #     level=3,
         #     internal=f"Last updated: {datetime.strftime(self.last_updated, self.datetime_format)}")
         # )

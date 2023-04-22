@@ -1,0 +1,1391 @@
+[
+    {
+        "name": "Yoshiyuki OGATA",
+        "country": "JPN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 1
+            },
+            {
+                "event": "COMBINED",
+                "rank": 1
+            },
+            {
+                "event": "LEAD",
+                "rank": 9
+            }
+        ]
+    },
+    {
+        "name": "Tomoa NARASAKI",
+        "country": "JPN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 2
+            },
+            {
+                "event": "COMBINED",
+                "rank": 4
+            }
+        ]
+    },
+    {
+        "name": "Kokoro FUJII",
+        "country": "JPN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 3
+            },
+            {
+                "event": "COMBINED",
+                "rank": 5
+            }
+        ]
+    },
+    {
+        "name": "Yannick FLOH\u00c9",
+        "country": "GER",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 4
+            },
+            {
+                "event": "COMBINED",
+                "rank": 3
+            },
+            {
+                "event": "LEAD",
+                "rank": 5
+            }
+        ]
+    },
+    {
+        "name": "Maximillian MILNE",
+        "country": "GBR",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 5
+            },
+            {
+                "event": "COMBINED",
+                "rank": 19
+            }
+        ]
+    },
+    {
+        "name": "Mejdi SCHALCK",
+        "country": "FRA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 6
+            },
+            {
+                "event": "COMBINED",
+                "rank": 6
+            }
+        ]
+    },
+    {
+        "name": "Dohyun LEE",
+        "country": "KOR",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 7
+            },
+            {
+                "event": "COMBINED",
+                "rank": 9
+            },
+            {
+                "event": "LEAD",
+                "rank": 15
+            }
+        ]
+    },
+    {
+        "name": "Jongwon CHON",
+        "country": "KOR",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 8
+            }
+        ]
+    },
+    {
+        "name": "Colin DUFFY",
+        "country": "USA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 9
+            },
+            {
+                "event": "COMBINED",
+                "rank": 2
+            },
+            {
+                "event": "LEAD",
+                "rank": 6
+            }
+        ]
+    },
+    {
+        "name": "Paul JENFT",
+        "country": "FRA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 10
+            },
+            {
+                "event": "COMBINED",
+                "rank": 10
+            }
+        ]
+    },
+    {
+        "name": "Rei KAWAMATA",
+        "country": "JPN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 11
+            }
+        ]
+    },
+    {
+        "name": "Jakob SCHUBERT",
+        "country": "AUT",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 12
+            },
+            {
+                "event": "COMBINED",
+                "rank": 17
+            }
+        ]
+    },
+    {
+        "name": "Anze PEHARC",
+        "country": "SLO",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 13
+            }
+        ]
+    },
+    {
+        "name": "Nicolai UZNIK",
+        "country": "AUT",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 14
+            }
+        ]
+    },
+    {
+        "name": "Keita DOHI",
+        "country": "JPN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 15
+            }
+        ]
+    },
+    {
+        "name": "Tomoaki TAKATA",
+        "country": "JPN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 16
+            }
+        ]
+    },
+    {
+        "name": "Yuji INOUE",
+        "country": "JPN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 17
+            }
+        ]
+    },
+    {
+        "name": "Sean BAILEY",
+        "country": "USA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 18
+            },
+            {
+                "event": "COMBINED",
+                "rank": 11
+            },
+            {
+                "event": "LEAD",
+                "rank": 11
+            }
+        ]
+    },
+    {
+        "name": "Hamish MCARTHUR",
+        "country": "GBR",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 19
+            },
+            {
+                "event": "COMBINED",
+                "rank": 18
+            },
+            {
+                "event": "LEAD",
+                "rank": 16
+            }
+        ]
+    },
+    {
+        "name": "Meichi NARASAKI",
+        "country": "JPN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 20
+            }
+        ]
+    },
+    {
+        "name": "Jesse GRUPPER",
+        "country": "USA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 7
+            },
+            {
+                "event": "LEAD",
+                "rank": 3
+            }
+        ]
+    },
+    {
+        "name": "Taisei HOMMA",
+        "country": "JPN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 8
+            },
+            {
+                "event": "LEAD",
+                "rank": 2
+            }
+        ]
+    },
+    {
+        "name": "Luka POTOCAR",
+        "country": "SLO",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 12
+            },
+            {
+                "event": "LEAD",
+                "rank": 1
+            }
+        ]
+    },
+    {
+        "name": "Ao YURIKUSA",
+        "country": "JPN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 13
+            },
+            {
+                "event": "LEAD",
+                "rank": 4
+            }
+        ]
+    },
+    {
+        "name": "Alexander MEGOS",
+        "country": "GER",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 14
+            },
+            {
+                "event": "LEAD",
+                "rank": 12
+            }
+        ]
+    },
+    {
+        "name": "Sascha LEHMANN",
+        "country": "SUI",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 15
+            },
+            {
+                "event": "LEAD",
+                "rank": 8
+            }
+        ]
+    },
+    {
+        "name": "Satone YOSHIDA",
+        "country": "JPN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 16
+            },
+            {
+                "event": "LEAD",
+                "rank": 7
+            }
+        ]
+    },
+    {
+        "name": "Masahiro HIGUCHI",
+        "country": "JPN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 20
+            },
+            {
+                "event": "LEAD",
+                "rank": 10
+            }
+        ]
+    },
+    {
+        "name": "Stefan SCHERZ",
+        "country": "AUT",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "LEAD",
+                "rank": 13
+            }
+        ]
+    },
+    {
+        "name": "Sebastian HALENKE",
+        "country": "GER",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "LEAD",
+                "rank": 14
+            }
+        ]
+    },
+    {
+        "name": "Domen SKOFIC",
+        "country": "SLO",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "LEAD",
+                "rank": 17
+            }
+        ]
+    },
+    {
+        "name": "Filip SCHENK",
+        "country": "ITA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "LEAD",
+                "rank": 18
+            }
+        ]
+    },
+    {
+        "name": "Adam ONDRA",
+        "country": "CZE",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "LEAD",
+                "rank": 19
+            }
+        ]
+    },
+    {
+        "name": "Alberto GIN\u00c9S L\u00d3PEZ",
+        "country": "ESP",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "LEAD",
+                "rank": 20
+            }
+        ]
+    },
+    {
+        "name": "Veddriq LEONARDO",
+        "country": "INA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 1
+            }
+        ]
+    },
+    {
+        "name": "Kiromal KATIBIN",
+        "country": "INA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 2
+            }
+        ]
+    },
+    {
+        "name": "Jinbao LONG",
+        "country": "CHN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 3
+            }
+        ]
+    },
+    {
+        "name": "Erik NOYA CARDONA",
+        "country": "ESP",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 4
+            }
+        ]
+    },
+    {
+        "name": "Samuel WATSON",
+        "country": "USA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 5
+            }
+        ]
+    },
+    {
+        "name": "Ludovico FOSSALI",
+        "country": "ITA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 6
+            }
+        ]
+    },
+    {
+        "name": "John BROSLER",
+        "country": "USA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 7
+            }
+        ]
+    },
+    {
+        "name": "Aspar ASPAR",
+        "country": "INA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 8
+            }
+        ]
+    },
+    {
+        "name": "Jianguo LONG",
+        "country": "CHN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 9
+            }
+        ]
+    },
+    {
+        "name": "Guillaume MORO",
+        "country": "FRA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 10
+            }
+        ]
+    },
+    {
+        "name": "Noah BRATSCHI",
+        "country": "USA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 11
+            }
+        ]
+    },
+    {
+        "name": "Long CAO",
+        "country": "CHN",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 12
+            }
+        ]
+    },
+    {
+        "name": "Marcin DZIENSKI",
+        "country": "POL",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 13
+            }
+        ]
+    },
+    {
+        "name": "Seungbeom LEE",
+        "country": "KOR",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 14
+            }
+        ]
+    },
+    {
+        "name": "Tobias PLANGGER",
+        "country": "AUT",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 15
+            }
+        ]
+    },
+    {
+        "name": "Yongjun JUNG",
+        "country": "KOR",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 16
+            }
+        ]
+    },
+    {
+        "name": "Rahmad ADI MULYONO",
+        "country": "INA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 17
+            }
+        ]
+    },
+    {
+        "name": "Alfian MUHAMMAD FAJRI",
+        "country": "INA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 18
+            }
+        ]
+    },
+    {
+        "name": "Gian Luca ZODDA",
+        "country": "ITA",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 19
+            }
+        ]
+    },
+    {
+        "name": "Reza ALIPOUR SHENAZANDIFARD",
+        "country": "IRI",
+        "gender": "MEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 20
+            }
+        ]
+    },
+    {
+        "name": "Natalia GROSSMAN",
+        "country": "USA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 1
+            },
+            {
+                "event": "COMBINED",
+                "rank": 1
+            },
+            {
+                "event": "LEAD",
+                "rank": 3
+            }
+        ]
+    },
+    {
+        "name": "Miho NONAKA",
+        "country": "JPN",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 2
+            },
+            {
+                "event": "COMBINED",
+                "rank": 12
+            }
+        ]
+    },
+    {
+        "name": "Brooke RABOUTOU",
+        "country": "USA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 3
+            },
+            {
+                "event": "COMBINED",
+                "rank": 2
+            },
+            {
+                "event": "LEAD",
+                "rank": 5
+            }
+        ]
+    },
+    {
+        "name": "Futaba ITO",
+        "country": "JPN",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 4
+            },
+            {
+                "event": "COMBINED",
+                "rank": 7
+            },
+            {
+                "event": "LEAD",
+                "rank": 18
+            }
+        ]
+    },
+    {
+        "name": "Hannah MEUL",
+        "country": "GER",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 5
+            },
+            {
+                "event": "COMBINED",
+                "rank": 5
+            },
+            {
+                "event": "LEAD",
+                "rank": 13
+            }
+        ]
+    },
+    {
+        "name": "Oriane BERTONE",
+        "country": "FRA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 6
+            },
+            {
+                "event": "COMBINED",
+                "rank": 10
+            }
+        ]
+    },
+    {
+        "name": "Stasa GEJO",
+        "country": "SRB",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 7
+            },
+            {
+                "event": "COMBINED",
+                "rank": 16
+            }
+        ]
+    },
+    {
+        "name": "Jessica PILZ",
+        "country": "AUT",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 8
+            },
+            {
+                "event": "COMBINED",
+                "rank": 6
+            },
+            {
+                "event": "LEAD",
+                "rank": 8
+            }
+        ]
+    },
+    {
+        "name": "Camilla MORONI",
+        "country": "ITA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 9
+            },
+            {
+                "event": "COMBINED",
+                "rank": 17
+            }
+        ]
+    },
+    {
+        "name": "Chaehyun SEO",
+        "country": "KOR",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 10
+            },
+            {
+                "event": "COMBINED",
+                "rank": 4
+            },
+            {
+                "event": "LEAD",
+                "rank": 2
+            }
+        ]
+    },
+    {
+        "name": "Franziska STERRER",
+        "country": "AUT",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 11
+            }
+        ]
+    },
+    {
+        "name": "Cloe COSCOY",
+        "country": "USA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 12
+            }
+        ]
+    },
+    {
+        "name": "Ayala KEREM",
+        "country": "ISR",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 13
+            }
+        ]
+    },
+    {
+        "name": "Fanny GIBERT",
+        "country": "FRA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 14
+            },
+            {
+                "event": "COMBINED",
+                "rank": 19
+            }
+        ]
+    },
+    {
+        "name": "Janja GARNBRET",
+        "country": "SLO",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 15
+            },
+            {
+                "event": "COMBINED",
+                "rank": 3
+            },
+            {
+                "event": "LEAD",
+                "rank": 1
+            }
+        ]
+    },
+    {
+        "name": "Zhilu LUO",
+        "country": "CHN",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 16
+            },
+            {
+                "event": "COMBINED",
+                "rank": 15
+            }
+        ]
+    },
+    {
+        "name": "Kylie CULLEN",
+        "country": "USA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 17
+            }
+        ]
+    },
+    {
+        "name": "Giorgia TESIO",
+        "country": "ITA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 18
+            },
+            {
+                "event": "COMBINED",
+                "rank": 18
+            }
+        ]
+    },
+    {
+        "name": "Mia AOYAGI",
+        "country": "JPN",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 19
+            }
+        ]
+    },
+    {
+        "name": "Nanako KURA",
+        "country": "JPN",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "BOULDER",
+                "rank": 20
+            }
+        ]
+    },
+    {
+        "name": "Laura ROGORA",
+        "country": "ITA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 8
+            },
+            {
+                "event": "LEAD",
+                "rank": 4
+            }
+        ]
+    },
+    {
+        "name": "Natsuki TANII",
+        "country": "JPN",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 9
+            },
+            {
+                "event": "LEAD",
+                "rank": 6
+            }
+        ]
+    },
+    {
+        "name": "Mia KRAMPL",
+        "country": "SLO",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 11
+            },
+            {
+                "event": "LEAD",
+                "rank": 7
+            }
+        ]
+    },
+    {
+        "name": "Ai MORI",
+        "country": "JPN",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 13
+            },
+            {
+                "event": "LEAD",
+                "rank": 11
+            }
+        ]
+    },
+    {
+        "name": "Vita LUKAN",
+        "country": "SLO",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 14
+            },
+            {
+                "event": "LEAD",
+                "rank": 10
+            }
+        ]
+    },
+    {
+        "name": "Ryu NAKAGAWA",
+        "country": "JPN",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "COMBINED",
+                "rank": 20
+            },
+            {
+                "event": "LEAD",
+                "rank": 9
+            }
+        ]
+    },
+    {
+        "name": "Manon HILY",
+        "country": "FRA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "LEAD",
+                "rank": 12
+            }
+        ]
+    },
+    {
+        "name": "Molly THOMPSON-SMITH",
+        "country": "GBR",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "LEAD",
+                "rank": 14
+            }
+        ]
+    },
+    {
+        "name": "H\u00e9l\u00e8ne JANICOT",
+        "country": "FRA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "LEAD",
+                "rank": 15
+            }
+        ]
+    },
+    {
+        "name": "Lucka RAKOVEC",
+        "country": "SLO",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "LEAD",
+                "rank": 16
+            }
+        ]
+    },
+    {
+        "name": "Risa OTA",
+        "country": "JPN",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "LEAD",
+                "rank": 17
+            }
+        ]
+    },
+    {
+        "name": "Eliska ADAMOVSKA",
+        "country": "CZE",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "LEAD",
+                "rank": 19
+            }
+        ]
+    },
+    {
+        "name": "Aleksandra TOTKOVA",
+        "country": "BUL",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "LEAD",
+                "rank": 20
+            }
+        ]
+    },
+    {
+        "name": "Aleksandra KALUCKA",
+        "country": "POL",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 1
+            }
+        ]
+    },
+    {
+        "name": "Emma HUNT",
+        "country": "USA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 2
+            }
+        ]
+    },
+    {
+        "name": "Natalia KALUCKA",
+        "country": "POL",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 3
+            }
+        ]
+    },
+    {
+        "name": "Lijuan DENG",
+        "country": "CHN",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 4
+            }
+        ]
+    },
+    {
+        "name": "Aleksandra MIROSLAW",
+        "country": "POL",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 5
+            }
+        ]
+    },
+    {
+        "name": "Di NIU",
+        "country": "CHN",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 6
+            }
+        ]
+    },
+    {
+        "name": "Capucine VIGLIONE",
+        "country": "FRA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 7
+            }
+        ]
+    },
+    {
+        "name": "Patrycja CHUDZIAK",
+        "country": "POL",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 8
+            }
+        ]
+    },
+    {
+        "name": "Desak MADE RITA KUSUMA DEWI",
+        "country": "INA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 9
+            }
+        ]
+    },
+    {
+        "name": "Aurelia SARISSON",
+        "country": "FRA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 10
+            }
+        ]
+    },
+    {
+        "name": "Beatrice COLLI",
+        "country": "ITA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 11
+            }
+        ]
+    },
+    {
+        "name": "Rajiah SALLSABILLAH",
+        "country": "INA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 12
+            }
+        ]
+    },
+    {
+        "name": "Giulia RANDI",
+        "country": "ITA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 13
+            }
+        ]
+    },
+    {
+        "name": "Nurul IQAMAH",
+        "country": "INA",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 14
+            }
+        ]
+    },
+    {
+        "name": "Franziska RITTER",
+        "country": "GER",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 14
+            }
+        ]
+    },
+    {
+        "name": "Anna BROZEK",
+        "country": "POL",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 16
+            }
+        ]
+    },
+    {
+        "name": "Jimin JEONG",
+        "country": "KOR",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 17
+            }
+        ]
+    },
+    {
+        "name": "Andrea ROJAS",
+        "country": "ECU",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 18
+            }
+        ]
+    },
+    {
+        "name": "Nuria BROCKFELD",
+        "country": "GER",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 19
+            }
+        ]
+    },
+    {
+        "name": "Yufang XIE",
+        "country": "CHN",
+        "gender": "WOMEN",
+        "events": [
+            {
+                "event": "SPEED",
+                "rank": 20
+            }
+        ]
+    }
+]

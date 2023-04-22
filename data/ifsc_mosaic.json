@@ -1,15 +1,15 @@
 {
     "title": "IFSC Standings and Updates:",
-    "last_updated": "2023-02-16T11:10:59Z",
+    "last_updated": "2023-03-18T16:49:31Z",
     "tiles": [
         {
             "id": null,
-            "name": "Womans Lead",
-            "description": "Current womans top 5 Lead rankings",
+            "name": "WL",
+            "description": "Womens Lead",
             "links": [],
             "files": [],
             "tags": [],
-            "content": "<p><ol><li>Janja Garnbret</li><li>Chaehyun Seo</li><li>Natalia Grossman</li><li>Laura Rogora</li><li>Brooke Raboutou</li></ol></p>",
+            "content": "<ol><li>1 Janja GARNBRET SLO</li><li>2 Chaehyun SEO KOR</li><li>3 Natalia GROSSMAN USA</li><li>4 Laura ROGORA ITA</li><li>5 Brooke RABOUTOU USA</li></ol>",
             "version": 0,
             "notes": [],
             "changelog": [],
@@ -21,12 +21,12 @@
         },
         {
             "id": null,
-            "name": "Womans Boulder",
-            "description": "Current womans top 5 Bouldering rankings",
+            "name": "WB",
+            "description": "Womens Bouldering",
             "links": [],
             "files": [],
             "tags": [],
-            "content": "<p><ol><li>Janja Garnbret</li><li>Chaehyun Seo</li><li>Natalia Grossman</li><li>Laura Rogora</li><li>Brooke Raboutou</li></ol></p>",
+            "content": "<ol><li>1 Natalia GROSSMAN USA</li><li>2 Miho NONAKA JPN</li><li>3 Brooke RABOUTOU USA</li><li>4 Futaba ITO JPN</li><li>5 Hannah MEUL GER</li></ol>",
             "version": 0,
             "notes": [],
             "changelog": [],
@@ -38,12 +38,97 @@
         },
         {
             "id": null,
-            "name": "Womans Speed",
-            "description": "Current womans top 5 Spead rankings",
+            "name": "WS",
+            "description": "Womens Speed",
             "links": [],
             "files": [],
             "tags": [],
-            "content": "<p><ol><li>Janja Garnbret</li><li>Chaehyun Seo</li><li>Natalia Grossman</li><li>Laura Rogora</li><li>Brooke Raboutou</li></ol></p>",
+            "content": "<ol><li>1 Aleksandra KALUCKA POL</li><li>2 Emma HUNT USA</li><li>3 Natalia KALUCKA POL</li><li>4 Lijuan DENG CHN</li><li>5 Aleksandra MIROSLAW POL</li></ol>",
+            "version": 0,
+            "notes": [],
+            "changelog": [],
+            "html_classes": [
+                "tile-ifsc"
+            ],
+            "html_styles": {},
+            "mutated": false
+        },
+        {
+            "id": null,
+            "name": "WC",
+            "description": "Womens Combined",
+            "links": [],
+            "files": [],
+            "tags": [],
+            "content": "<ol><li>1 Natalia GROSSMAN USA</li><li>2 Brooke RABOUTOU USA</li><li>3 Janja GARNBRET SLO</li><li>4 Chaehyun SEO KOR</li><li>5 Hannah MEUL GER</li></ol>",
+            "version": 0,
+            "notes": [],
+            "changelog": [],
+            "html_classes": [
+                "tile-ifsc"
+            ],
+            "html_styles": {},
+            "mutated": false
+        },
+        {
+            "id": null,
+            "name": "ML",
+            "description": "Mens Lead",
+            "links": [],
+            "files": [],
+            "tags": [],
+            "content": "<ol><li>1 Luka POTOCAR SLO</li><li>2 Taisei HOMMA JPN</li><li>3 Jesse GRUPPER USA</li><li>4 Ao YURIKUSA JPN</li><li>5 Yannick FLOH\u00c9 GER</li></ol>",
+            "version": 0,
+            "notes": [],
+            "changelog": [],
+            "html_classes": [
+                "tile-ifsc"
+            ],
+            "html_styles": {},
+            "mutated": false
+        },
+        {
+            "id": null,
+            "name": "MB",
+            "description": "Mens Bouldering",
+            "links": [],
+            "files": [],
+            "tags": [],
+            "content": "<ol><li>1 Yoshiyuki OGATA JPN</li><li>2 Tomoa NARASAKI JPN</li><li>3 Kokoro FUJII JPN</li><li>4 Yannick FLOH\u00c9 GER</li><li>5 Maximillian MILNE GBR</li></ol>",
+            "version": 0,
+            "notes": [],
+            "changelog": [],
+            "html_classes": [
+                "tile-ifsc"
+            ],
+            "html_styles": {},
+            "mutated": false
+        },
+        {
+            "id": null,
+            "name": "MS",
+            "description": "Mens Speed",
+            "links": [],
+            "files": [],
+            "tags": [],
+            "content": "<ol><li>1 Veddriq LEONARDO INA</li><li>2 Kiromal KATIBIN INA</li><li>3 Jinbao LONG CHN</li><li>4 Erik NOYA CARDONA ESP</li><li>5 Samuel WATSON USA</li></ol>",
+            "version": 0,
+            "notes": [],
+            "changelog": [],
+            "html_classes": [
+                "tile-ifsc"
+            ],
+            "html_styles": {},
+            "mutated": false
+        },
+        {
+            "id": null,
+            "name": "MC",
+            "description": "Mens Combined",
+            "links": [],
+            "files": [],
+            "tags": [],
+            "content": "<ol><li>1 Yoshiyuki OGATA JPN</li><li>2 Colin DUFFY USA</li><li>3 Yannick FLOH\u00c9 GER</li><li>4 Tomoa NARASAKI JPN</li><li>5 Kokoro FUJII JPN</li></ol>",
             "version": 0,
             "notes": [],
             "changelog": [],

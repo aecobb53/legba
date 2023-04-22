@@ -1,6 +1,6 @@
-from wall import Wall
-from mosaic import Mosaic, TrafficMosaic, IFSCMosaic
-from tile import TargetElement, LinkElement, Tile
+from classes.wall import Wall
+from classes.mosaic import Mosaic, TrafficMosaic, IFSCMosaic
+from classes.tile import TargetElement, LinkElement, Tile
 from phtml import *
 import json
 import os
@@ -136,11 +136,15 @@ main_page.doc.styles.extend(data)
 
 x=1
 
-with open('testing.html', 'w') as hf:
+with open('data/main_page.html', 'w') as hf:
     hf.write(main_page.html)
 
 x=1
 
+
+
+if __name__ == '__main__':
+    x=1
 
 """
 Page colors (Base to content accent):
