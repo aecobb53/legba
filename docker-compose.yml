@@ -1,12 +1,23 @@
 version: '3'
 
 services:
-  mongo:
-    image: mongo
-    container_name: mongodb
-    restart: always
-    # environment:
-    #   MONGO_INITDB_ROOT_USERNAME: root
-    #   MONGO_INITDB_ROOT_PASSWORD: example
-    ports:
-      - 27017:27017
+    legba:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: borderlands
+        restart: always
+        command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+        volumes:
+            - .:/usr/src
+        ports:
+            - 8201:8000
+  # mongo:
+  #   image: mongo
+  #   container_name: mongodb
+  #   restart: always
+  #   # environment:
+  #   #   MONGO_INITDB_ROOT_USERNAME: root
+  #   #   MONGO_INITDB_ROOT_PASSWORD: example
+  #   ports:
+  #     - 27017:27017
