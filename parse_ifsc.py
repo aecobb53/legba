@@ -213,28 +213,28 @@ if __name__ == '__main__':
 
     # get_current_rankings(logit=logit)
 
-    # all_athletes = []
-    # all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'mens_boulder.html'), logit=logit))
-    # all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'mens_combined.html'), logit=logit))
-    # all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'mens_lead.html'), logit=logit))
-    # all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'mens_speed.html'), logit=logit))
-    # all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'womens_boulder.html'), logit=logit))
-    # all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'womens_combined.html'), logit=logit))
-    # all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'womens_lead.html'), logit=logit))
-    # all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'womens_speed.html'), logit=logit))
+    all_athletes = []
+    all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'mens_boulder.html'), logit=logit))
+    all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'mens_combined.html'), logit=logit))
+    all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'mens_lead.html'), logit=logit))
+    all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'mens_speed.html'), logit=logit))
+    all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'womens_boulder.html'), logit=logit))
+    all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'womens_combined.html'), logit=logit))
+    all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'womens_lead.html'), logit=logit))
+    all_athletes.extend(parse_html_file(path=os.path.join(os.getcwd(), 'data', 'rankings', 'womens_speed.html'), logit=logit))
 
-    # condenced_dct = {}
-    # for athlete in all_athletes:
-    #     if athlete.name not in condenced_dct:
-    #         condenced_dct[athlete.name] = athlete
-    #     else:
-    #         condenced_dct[athlete.name].events.extend(athlete.events)
-    #     x=1
+    condenced_dct = {}
+    for athlete in all_athletes:
+        if athlete.name not in condenced_dct:
+            condenced_dct[athlete.name] = athlete
+        else:
+            condenced_dct[athlete.name].events.extend(athlete.events)
+        x=1
 
     ifsc_rankings_path = 'data/ifsc_rankings.json'
-    # logit.info(f'About to write the {ifsc_rankings_path} file')
-    # with open(ifsc_rankings_path, 'w') as tf:
-    #     tf.write(json.dumps([a.put for a in condenced_dct.values()], indent=4))
+    logit.info(f'About to write the {ifsc_rankings_path} file')
+    with open(ifsc_rankings_path, 'w') as tf:
+        tf.write(json.dumps([a.put for a in condenced_dct.values()], indent=4))
 
     with open(ifsc_rankings_path, 'r') as tf:
         temp_athletes = json.load(tf)
