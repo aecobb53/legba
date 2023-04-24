@@ -7,7 +7,7 @@ import os
 from datetime import datetime,  timedelta
 import phtml
 
-from mosaic import Mosaic#, IFSCMosaic, TrafficMosaic
+from .mosaic import Mosaic#, IFSCMosaic, TrafficMosaic
 
 
 class Wall:

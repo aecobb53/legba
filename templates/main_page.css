@@ -27,11 +27,13 @@ body {
     border-radius: 25px;
     padding: 0px 10px 10px;
     margin: 5px;
-    max-height: 5000px;
+    min-height: 200px;
+    max-height: 300px;
     display: inline-block;
 }
 
 .tile-ifsc {
+    min-width: 200px;
     max-width: 200px;
 }
 

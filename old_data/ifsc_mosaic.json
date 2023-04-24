@@ -1,0 +1,57 @@
+{
+    "title": "IFSC Standings and Updates:",
+    "last_updated": "2023-02-16T11:10:59Z",
+    "tiles": [
+        {
+            "id": null,
+            "name": "Womans Lead",
+            "description": "Current womans top 5 Lead rankings",
+            "links": [],
+            "files": [],
+            "tags": [],
+            "content": "<p><ol><li>Janja Garnbret</li><li>Chaehyun Seo</li><li>Natalia Grossman</li><li>Laura Rogora</li><li>Brooke Raboutou</li></ol></p>",
+            "version": 0,
+            "notes": [],
+            "changelog": [],
+            "html_classes": [
+                "tile-ifsc"
+            ],
+            "html_styles": {},
+            "mutated": false
+        },
+        {
+            "id": null,
+            "name": "Womans Boulder",
+            "description": "Current womans top 5 Bouldering rankings",
+            "links": [],
+            "files": [],
+            "tags": [],
+            "content": "<p><ol><li>Janja Garnbret</li><li>Chaehyun Seo</li><li>Natalia Grossman</li><li>Laura Rogora</li><li>Brooke Raboutou</li></ol></p>",
+            "version": 0,
+            "notes": [],
+            "changelog": [],
+            "html_classes": [
+                "tile-ifsc"
+            ],
+            "html_styles": {},
+            "mutated": false
+        },
+        {
+            "id": null,
+            "name": "Womans Speed",
+            "description": "Current womans top 5 Spead rankings",
+            "links": [],
+            "files": [],
+            "tags": [],
+            "content": "<p><ol><li>Janja Garnbret</li><li>Chaehyun Seo</li><li>Natalia Grossman</li><li>Laura Rogora</li><li>Brooke Raboutou</li></ol></p>",
+            "version": 0,
+            "notes": [],
+            "changelog": [],
+            "html_classes": [
+                "tile-ifsc"
+            ],
+            "html_styles": {},
+            "mutated": false
+        }
+    ]
+}
