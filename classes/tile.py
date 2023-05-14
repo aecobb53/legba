@@ -1,12 +1,18 @@
 from lib2to3.pytree import Base
-from pydantic import BaseModel
-from typing import List, Dict
+from pydantic import BaseModel as PydanticBaseModel
+from typing import List, Dict, Union
 from enum import Enum
 import json
 import re
 import os
 from datetime import datetime
+from phtml import HtmlReader
 import phtml
+
+
+class BaseModel(PydanticBaseModel):
+    class Config:
+        arbitrary_types_allowed = True
 
 
 class TargetElement(Enum):
@@ -81,7 +87,7 @@ class Tile(BaseModel):
     links: List[LinkElement] = []
     files: List[Dict] = []
     tags: List[Dict] = []
-    content: str = None
+    content: Union[phtml.Base, str] = None
 
     version: int = 0
     notes: List[str] = []
@@ -101,7 +107,7 @@ class Tile(BaseModel):
             "links": self.links,
             "files": self.files,
             "tags": self.tags,
-            "content": self.content,
+            # "content": self.content,
             "version": self.version,
             "notes": self.notes,
             "changelog": self.changelog,
@@ -109,6 +115,10 @@ class Tile(BaseModel):
             "html_styles": self.html_styles,
             "mutated": self.mutated,
         }
+        if isinstance(self.content, phtml.Base):
+            output['content'] = self.content.return_document
+        else:
+            output['content'] = self.content
         return output
 
     @property
@@ -140,7 +150,10 @@ class Tile(BaseModel):
             f"{self.description if self.description is not None else 'No description'}",
         ]
         if self.content:
-            details.append(self.content)
+            if isinstance(self.content, phtml.Base):
+                details.append(self.content.return_document)
+            else:
+                details.append(self.content)
         for link in self.links:
             details.append(link.html)
             # for descriptor, link in link_kv.items():
@@ -160,19 +173,40 @@ class Tile(BaseModel):
 
     @classmethod
     def build(cls, dct):
-        obj = cls(
-            id=dct.get('id'),
-            name=dct.get('name'),
-            description=dct.get('description'),
-            links=dct.get('links'),
-            files=dct.get('files'),
-            tags=dct.get('tags'),
-            content=dct.get('content'),
-            version=dct.get('version'),
-            notes=dct.get('notes'),
-            changelog=dct.get('changelog'),
-            html_classes=dct.get('html_classes'),
-            html_styles=dct.get('html_styles'),
-            mutated=dct.get('mutated'),
-        )
+        x=1
+        hr = HtmlReader()
+        # with open('deleteme.html', 'r') as hf:
+        #     content = hf.read()
+        # contents = hr.read_data(content, all=False)
+        a = dct['content']
+        b = ''.join(dct['content'])
+        x=1
+        contents = hr.read_data(b, all=False)
+
+        """
+        Reverse iterate through contents.internal to remoe extra spaces
+        """
+
+        x=1
+        # a = HtmlReader()
+        # b = dct.get('content')
+        # c = ''.join(dct.get('content'))
+        # result = a.read_data(c)
+        # x=1
+        content = {
+            'id': dct.get('id'),
+            'name': dct.get('name'),
+            'description': dct.get('description'),
+            'links': dct.get('links'),
+            'files': dct.get('files'),
+            'tags': dct.get('tags'),
+            'version': dct.get('version'),
+            'notes': dct.get('notes'),
+            'changelog': dct.get('changelog'),
+            'html_classes': dct.get('html_classes'),
+            'html_styles': dct.get('html_styles'),
+            'mutated': dct.get('mutated'),
+        }
+        content['content']: contents
+        obj = cls(**content)
         return obj

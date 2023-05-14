@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Paragraph changed.";
+}
+async function myFunction2() {
+    // const userAction = async () => {
+    //     const response = await fetch('https://httpbin.org/get');
+    //     const myJson = await response.json(); //extract JSON from the http response
+    //     // do something with myJson
+    // };
+    const response = await fetch('https://httpbin.org/get');
+    const myJson = await response.json(); //extract JSON from the http response
+
+    console.log("Hello world!");
+    console.log(myJson);
+    console.log(myJson['headers']);
+    // console.log(myJson.keys(object1));
+
+    // fetch('https://httpbin.org/post', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({ "id": 78912 })
+    // })
+    // .then(response => response.json())
+    // .then(response => console.log(JSON.stringify(response)))
+
+    const response2 = await fetch('https://httpbin.org/post', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ "id": 78912 })
+    })
+    .then(response2 => response2.json())
+    // .then(response => console.log(JSON.stringify(response)))
+    console.log(response2)
+
+}
+function myFunction3() {
+
+}
+</script>
+</head>
+<body>
+<h2>Demo JavaScript in Head</h2>
+
+<p id="demo">A Paragraph</p>
+<button type="button" onclick="myFunction()">Try it</button>
+<button type="button" onclick="myFunction2()">Other Func</button>
+
+</body>
+</html>

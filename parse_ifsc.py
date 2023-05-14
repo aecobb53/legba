@@ -104,7 +104,7 @@ def parse_html_file(path, logit):
     logit.info(f'About to parse html file: {path}')
     hr = phtml.HtmlReader()
     fe = phtml.FindElement()
-    doc = hr.read_file(path)[0]
+    doc = hr.read_file(path)
 
     elements = fe.find_elements(obj=doc, element_type=phtml.Div, _class='^athlete-basic-line$')
     athletes = []
@@ -192,13 +192,17 @@ def make_mosaic_file(athlete_list, logit):
         tile = Tile(
             name=event_item['name'],
             description=event_item['description'],
-            content=content.return_string_version,
+            content=content,
             html_classes=['tile-ifsc']
         )
         ifsc_mosaic.tiles.append(tile)
     logit.info('Done creating ifsc mosaic')
     return ifsc_mosaic
-        
+
+def search_ifsc_data():
+    with open('data/ifsc_rankings.json', 'r') as df:
+        data = json.load(df)
+    return data
 
 if __name__ == '__main__':
     needed_infrastructure = [
@@ -229,7 +233,6 @@ if __name__ == '__main__':
             condenced_dct[athlete.name] = athlete
         else:
             condenced_dct[athlete.name].events.extend(athlete.events)
-        x=1
 
     ifsc_rankings_path = 'data/ifsc_rankings.json'
     logit.info(f'About to write the {ifsc_rankings_path} file')
@@ -245,7 +248,6 @@ if __name__ == '__main__':
         athletes.append(AthleteProfile.build(item))
 
     ifsc_mosaic = make_mosaic_file(athlete_list=athletes, logit=logit)
-    x=1
 
     ifsc_mosaic_path = 'data/ifsc_mosaic.json'
     logit.info(f'About to write the {ifsc_mosaic_path} file')
