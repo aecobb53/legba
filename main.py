@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, Query
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, ORJSONResponse
 
 from parse_ifsc import search_ifsc_data
 
@@ -46,4 +46,4 @@ async def ifsc_current_rankings_data(requests: Request):
     content = {
         "data": data
     }
-    return HTMLResponse(content=content, status_code=200)
+    return ORJSONResponse(content=content, status_code=200)
