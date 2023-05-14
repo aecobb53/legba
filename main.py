@@ -46,4 +46,4 @@ async def ifsc_current_rankings_data(requests: Request):
     content = {
         "data": data
     }
-    return ORJSONResponse(content)
+    return content
