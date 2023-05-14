@@ -1,6 +1,8 @@
 from fastapi import FastAPI, Request, Query
 from fastapi.responses import HTMLResponse
 
+from parse_ifsc import search_ifsc_data
+
 
 appname = 'borderlands'
 
@@ -38,3 +40,10 @@ async def test_post_endpoint(requests: Request):
 async def test_put_endpoint(requests: Request):
     return HTMLResponse(status_code=200)
 
+@app.get('/ifsc_data', response_class=HTMLResponse)
+async def ifsc_current_rankings_data(requests: Request):
+    data = search_ifsc_data()
+    content = {
+        "data": data
+    }
+    return HTMLResponse(content=content, status_code=200)

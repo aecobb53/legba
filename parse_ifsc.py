@@ -198,7 +198,11 @@ def make_mosaic_file(athlete_list, logit):
         ifsc_mosaic.tiles.append(tile)
     logit.info('Done creating ifsc mosaic')
     return ifsc_mosaic
-        
+
+def search_ifsc_data():
+    with open('data/ifsc_rankings.json', 'r') as df:
+        data = json.load(df)
+    return data
 
 if __name__ == '__main__':
     needed_infrastructure = [
