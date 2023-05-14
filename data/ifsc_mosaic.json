@@ -1,6 +1,6 @@
 {
     "title": "IFSC Standings and Updates:",
-    "last_updated": "2023-03-18T16:49:31Z",
+    "last_updated": "2023-04-27T19:40:08Z",
     "tiles": [
         {
             "id": null,
@@ -9,7 +9,6 @@
             "links": [],
             "files": [],
             "tags": [],
-            "content": "<ol><li>1 Janja GARNBRET SLO</li><li>2 Chaehyun SEO KOR</li><li>3 Natalia GROSSMAN USA</li><li>4 Laura ROGORA ITA</li><li>5 Brooke RABOUTOU USA</li></ol>",
             "version": 0,
             "notes": [],
             "changelog": [],
@@ -17,7 +16,16 @@
                 "tile-ifsc"
             ],
             "html_styles": {},
-            "mutated": false
+            "mutated": false,
+            "content": [
+                "<ol>",
+                "    <li>1 Janja GARNBRET SLO</li>",
+                "    <li>2 Chaehyun SEO KOR</li>",
+                "    <li>3 Natalia GROSSMAN USA</li>",
+                "    <li>4 Laura ROGORA ITA</li>",
+                "    <li>5 Brooke RABOUTOU USA</li>",
+                "</ol>"
+            ]
         },
         {
             "id": null,
@@ -26,7 +34,6 @@
             "links": [],
             "files": [],
             "tags": [],
-            "content": "<ol><li>1 Natalia GROSSMAN USA</li><li>2 Miho NONAKA JPN</li><li>3 Brooke RABOUTOU USA</li><li>4 Futaba ITO JPN</li><li>5 Hannah MEUL GER</li></ol>",
             "version": 0,
             "notes": [],
             "changelog": [],
@@ -34,7 +41,16 @@
                 "tile-ifsc"
             ],
             "html_styles": {},
-            "mutated": false
+            "mutated": false,
+            "content": [
+                "<ol>",
+                "    <li>1 Natalia GROSSMAN USA</li>",
+                "    <li>2 Miho NONAKA JPN</li>",
+                "    <li>3 Brooke RABOUTOU USA</li>",
+                "    <li>4 Futaba ITO JPN</li>",
+                "    <li>5 Hannah MEUL GER</li>",
+                "</ol>"
+            ]
         },
         {
             "id": null,
@@ -43,7 +59,6 @@
             "links": [],
             "files": [],
             "tags": [],
-            "content": "<ol><li>1 Aleksandra KALUCKA POL</li><li>2 Emma HUNT USA</li><li>3 Natalia KALUCKA POL</li><li>4 Lijuan DENG CHN</li><li>5 Aleksandra MIROSLAW POL</li></ol>",
             "version": 0,
             "notes": [],
             "changelog": [],
@@ -51,7 +66,16 @@
                 "tile-ifsc"
             ],
             "html_styles": {},
-            "mutated": false
+            "mutated": false,
+            "content": [
+                "<ol>",
+                "    <li>1 Aleksandra KALUCKA POL</li>",
+                "    <li>2 Emma HUNT USA</li>",
+                "    <li>3 Natalia KALUCKA POL</li>",
+                "    <li>4 Lijuan DENG CHN</li>",
+                "    <li>5 Aleksandra MIROSLAW POL</li>",
+                "</ol>"
+            ]
         },
         {
             "id": null,
@@ -60,7 +84,6 @@
             "links": [],
             "files": [],
             "tags": [],
-            "content": "<ol><li>1 Natalia GROSSMAN USA</li><li>2 Brooke RABOUTOU USA</li><li>3 Janja GARNBRET SLO</li><li>4 Chaehyun SEO KOR</li><li>5 Hannah MEUL GER</li></ol>",
             "version": 0,
             "notes": [],
             "changelog": [],
@@ -68,7 +91,16 @@
                 "tile-ifsc"
             ],
             "html_styles": {},
-            "mutated": false
+            "mutated": false,
+            "content": [
+                "<ol>",
+                "    <li>1 Natalia GROSSMAN USA</li>",
+                "    <li>2 Brooke RABOUTOU USA</li>",
+                "    <li>3 Janja GARNBRET SLO</li>",
+                "    <li>4 Chaehyun SEO KOR</li>",
+                "    <li>5 Hannah MEUL GER</li>",
+                "</ol>"
+            ]
         },
         {
             "id": null,
@@ -77,7 +109,6 @@
             "links": [],
             "files": [],
             "tags": [],
-            "content": "<ol><li>1 Luka POTOCAR SLO</li><li>2 Taisei HOMMA JPN</li><li>3 Jesse GRUPPER USA</li><li>4 Ao YURIKUSA JPN</li><li>5 Yannick FLOH\u00c9 GER</li></ol>",
             "version": 0,
             "notes": [],
             "changelog": [],
@@ -85,7 +116,16 @@
                 "tile-ifsc"
             ],
             "html_styles": {},
-            "mutated": false
+            "mutated": false,
+            "content": [
+                "<ol>",
+                "    <li>1 Luka POTOCAR SLO</li>",
+                "    <li>2 Taisei HOMMA JPN</li>",
+                "    <li>3 Jesse GRUPPER USA</li>",
+                "    <li>4 Ao YURIKUSA JPN</li>",
+                "    <li>5 Yannick FLOH\u00c9 GER</li>",
+                "</ol>"
+            ]
         },
         {
             "id": null,
@@ -94,7 +134,6 @@
             "links": [],
             "files": [],
             "tags": [],
-            "content": "<ol><li>1 Yoshiyuki OGATA JPN</li><li>2 Tomoa NARASAKI JPN</li><li>3 Kokoro FUJII JPN</li><li>4 Yannick FLOH\u00c9 GER</li><li>5 Maximillian MILNE GBR</li></ol>",
             "version": 0,
             "notes": [],
             "changelog": [],
@@ -102,7 +141,16 @@
                 "tile-ifsc"
             ],
             "html_styles": {},
-            "mutated": false
+            "mutated": false,
+            "content": [
+                "<ol>",
+                "    <li>1 Yoshiyuki OGATA JPN</li>",
+                "    <li>2 Tomoa NARASAKI JPN</li>",
+                "    <li>3 Kokoro FUJII JPN</li>",
+                "    <li>4 Yannick FLOH\u00c9 GER</li>",
+                "    <li>5 Maximillian MILNE GBR</li>",
+                "</ol>"
+            ]
         },
         {
             "id": null,
@@ -111,7 +159,6 @@
             "links": [],
             "files": [],
             "tags": [],
-            "content": "<ol><li>1 Veddriq LEONARDO INA</li><li>2 Kiromal KATIBIN INA</li><li>3 Jinbao LONG CHN</li><li>4 Erik NOYA CARDONA ESP</li><li>5 Samuel WATSON USA</li></ol>",
             "version": 0,
             "notes": [],
             "changelog": [],
@@ -119,7 +166,16 @@
                 "tile-ifsc"
             ],
             "html_styles": {},
-            "mutated": false
+            "mutated": false,
+            "content": [
+                "<ol>",
+                "    <li>1 Veddriq LEONARDO INA</li>",
+                "    <li>2 Kiromal KATIBIN INA</li>",
+                "    <li>3 Jinbao LONG CHN</li>",
+                "    <li>4 Erik NOYA CARDONA ESP</li>",
+                "    <li>5 Samuel WATSON USA</li>",
+                "</ol>"
+            ]
         },
         {
             "id": null,
@@ -128,7 +184,6 @@
             "links": [],
             "files": [],
             "tags": [],
-            "content": "<ol><li>1 Yoshiyuki OGATA JPN</li><li>2 Colin DUFFY USA</li><li>3 Yannick FLOH\u00c9 GER</li><li>4 Tomoa NARASAKI JPN</li><li>5 Kokoro FUJII JPN</li></ol>",
             "version": 0,
             "notes": [],
             "changelog": [],
@@ -136,7 +191,16 @@
                 "tile-ifsc"
             ],
             "html_styles": {},
-            "mutated": false
+            "mutated": false,
+            "content": [
+                "<ol>",
+                "    <li>1 Yoshiyuki OGATA JPN</li>",
+                "    <li>2 Colin DUFFY USA</li>",
+                "    <li>3 Yannick FLOH\u00c9 GER</li>",
+                "    <li>4 Tomoa NARASAKI JPN</li>",
+                "    <li>5 Kokoro FUJII JPN</li>",
+                "</ol>"
+            ]
         }
     ]
 }
