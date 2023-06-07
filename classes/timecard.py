@@ -52,7 +52,15 @@ class TimecardEntry(BaseModel):
     @classmethod
     def build(cls, dct):
         content = {
-            'datetime': dct['datetime']
+            '_id': dct.get('id'),
+            'update_datetime': dct.get('update_datetime'),
+            'changelog': dct.get('changelog'),
+            'charge_code': dct.get('charge_code'),
+            'shorthand': dct.get('shorthand'),
+            'note': dct.get('note'),
+            'description': dct.get('description'),
+            'start_time': dct.get('start_time'),
+            'end_time': dct.get('end_time'),
         }
         obj = cls(**content)
         return obj
