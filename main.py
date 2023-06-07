@@ -80,21 +80,16 @@ async def timecard_get(requests: Request):
 
 @app.post('/timecard-entry')
 async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
-# async def timecard_post(requests: Request):
     logger.debug('POST on /timecard-entry')
     try:
         tc = Timecard()
         entry = timecard_entry.return_timecard_entry()
         tc.add_entry(entry=entry)
         tc.save()
-        logger.debug(f"Record created: {entry.datetime}")
+        logger.debug(f"Record created: {entry.id}")
     except Exception as err:
-        return {'message': f"Exception raised: {err}"}
-        # raise HTTPException(
-        #     status_code=500,
-        #     detail=f'Exception raised',
-        # )
-    finally:
-        x=1
-    x=1
-    return {'post': 'timecard-entry', 'example': timecard_entry.example}
+        return {'message': f"Internal Exception raised: {err}"}
+    # finally:
+    #     x=1
+    # x=1
+    return entry.put

@@ -2,21 +2,41 @@ import os
 import json
 
 from pydantic import BaseModel
+from typing import List
 from datetime import datetime
+from uuid import uuid4
 
 
 datetime_str = "%Y%m%d_%H%M%S.%fZ"
 
 
 class TimecardEntry(BaseModel):
-    datetime: str = None
+    identifier: str = None
+    update_datetime: str = None
+    changelog: List[str] = []
+    charge_code: str = None
+    shorthand: str = None
+    note: str = None
+    description: str = None
+    start_time: str = None
+    end_time: str = None
 
     @property
     def put(self):
-        if self.datetime is None:
-            self.datetime = datetime.strftime(datetime.utcnow(), datetime_str)
+        if self.update_datetime is None:
+            self.update_datetime = datetime.strftime(datetime.utcnow(), datetime_str)
+        if self.identifier is None:
+            self.identifier = uuid4()
         content = {
-            'datetime': self.datetime,
+            'identifier': self.identifier,
+            'update_datetime': self.update_datetime,
+            'changelog': self.changelog,
+            'charge_code': self.charge_code,
+            'shorthand': self.shorthand,
+            'note': self.note,
+            'description': self.description,
+            'start_time': self.start_time,
+            'end_time': self.end_time,
         }
         return content
 
@@ -52,13 +72,11 @@ class Timecard:
             with open(filepath, 'r') as tf:
                 timecard_data = json.load(tf)
         except FileNotFoundError:
-            print('directory not found')
-            print(os.listdir('.'))
-            print(os.listdir('data/'))
-            os.makedirs('data/timecard')
+            try:
+                os.makedirs('data/timecard')
+            except:
+                pass
             timecard_data = {}
-        except Exception as err:
-            print(err)
         for item in timecard_data.get('records', []):
             item = json.loads(item)
             records.append(TimecardEntry.build(item))
@@ -78,8 +96,16 @@ class Timecard:
         for item in data.get('records', []):
             records.append(json.dumps(item.put))
         data['records'] = records
-        with open(filepath, 'w') as tf:
-            tf.write(json.dumps(data, indent=4))
+        try:
+            with open(filepath, 'w') as tf:
+                tf.write(json.dumps(data, indent=4))
+        except FileNotFoundError:
+            try:
+                os.makedirs('data/timecard')
+            except:
+                pass
+            with open(filepath, 'w') as tf:
+                tf.write(json.dumps(data, indent=4))
 
     def add_entry(self, entry):
         data = self.data
