@@ -1,3 +1,8 @@
+import os
+import logging
+
+from logging.handlers import RotatingFileHandler
+from logging import FileHandler  # , StreamHandler
 from fastapi import FastAPI, Query, Request
 from fastapi.responses import HTMLResponse, ORJSONResponse
 
@@ -5,6 +10,22 @@ from parse_ifsc import search_ifsc_data
 from classes.timecard import Timecard
 
 appname = 'legba'
+
+# Logging
+try:
+    os.makedirs('logs')
+except:
+    pass
+log_file = f"logs/{appname}.log"
+logger = logging.getLogger('legba')
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(module)s %(funcName)s - %(message)s', '%Y-%m-%dT%H:%M:%SZ')
+logger.setLevel(logging.DEBUG)
+fh = logging.FileHandler(log_file)
+fh.setLevel(logging.DEBUG)
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+
+logger.debug('app started')
 
 app = FastAPI()
 
