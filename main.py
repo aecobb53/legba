@@ -25,13 +25,12 @@ fh.setLevel(logging.DEBUG)
 fh.setFormatter(formatter)
 logger.addHandler(fh)
 
-logger.debug('app started')
-
 app = FastAPI()
 
 # Root
 @app.get('/')
 async def root(requests: Request):
+    logger.debug('GET on /')
     return {'Hello': 'WORLD!'}
 
 # @app.get('/main-page', response_class=HTMLResponse)
@@ -63,6 +62,7 @@ async def root(requests: Request):
 
 @app.get('/ifsc-data')
 async def ifsc_current_rankings_data(requests: Request):
+    logger.debug('GET on /ifsc-data')
     data = search_ifsc_data()
     content = {
         "data": data
@@ -72,6 +72,7 @@ async def ifsc_current_rankings_data(requests: Request):
 
 @app.get('/timecard')
 async def timecard_get(requests: Request):
+    logger.debug('GET on /timecard')
     tc = Timecard()
     x=1
     return {'get': 'timecard'}
@@ -79,6 +80,7 @@ async def timecard_get(requests: Request):
 
 @app.post('/timecard-entry')
 async def timecard_get(requests: Request):
+    logger.debug('GET on /timecard-entry')
     tc = Timecard()
     x=1
     return {'post': 'timecard-entry'}
