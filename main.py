@@ -4,7 +4,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 from logging import FileHandler  # , StreamHandler
 from fastapi import FastAPI, Query, Request
-from fastapi.responses import HTMLResponse, ORJSONResponse
+from fastapi.responses import HTMLResponse, ORJSONResponse, status, HTTPException
 
 from parse_ifsc import search_ifsc_data
 from classes.timecard import Timecard, POSTTimecardEntry
@@ -83,6 +83,19 @@ async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
 # async def timecard_post(requests: Request):
     logger.debug('POST on /timecard-entry')
     logger.debug(f"example: {timecard_entry.example}")
-    tc = Timecard()
+    try:
+        tc = Timecard()
+        entry = timecard_entry.return_timecard_entry()
+        tc.add_entry(entry=entry)
+        tc.save()
+        logger.debug(f"Record created: {entry.datetime}")
+    except Exception as err:
+        return {'message': "Exception raised"}
+        # raise HTTPException(
+        #     status_code=500,
+        #     detail=f'Exception raised',
+        # )
+    finally:
+        x=1
     x=1
     return {'post': 'timecard-entry', 'example': timecard_entry.example}
