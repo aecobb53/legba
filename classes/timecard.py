@@ -1,3 +1,4 @@
+import os
 import json
 
 from pydantic import BaseModel
@@ -50,6 +51,12 @@ class Timecard:
         try:
             with open(filepath, 'r') as tf:
                 timecard_data = json.load(tf)
+        except FileNotFoundError:
+            print('directory not found')
+            print(os.listdir('.'))
+            print(os.listdir('data/'))
+            os.makedirs('data/timecard')
+            timecard_data = {}
         except Exception as err:
             print(err)
         for item in timecard_data.get('records', []):
