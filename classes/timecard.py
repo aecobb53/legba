@@ -26,7 +26,7 @@ class TimecardEntry(BaseModel):
         if self.update_datetime is None:
             self.update_datetime = datetime.strftime(datetime.utcnow(), datetime_str)
         if self.identifier is None:
-            self.identifier = uuid4()
+            self.identifier = str(uuid4())
         content = {
             'identifier': self.identifier,
             'update_datetime': self.update_datetime,
