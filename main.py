@@ -82,7 +82,6 @@ async def timecard_get(requests: Request):
 async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
 # async def timecard_post(requests: Request):
     logger.debug('POST on /timecard-entry')
-    logger.debug(f"example: {timecard_entry.example}")
     try:
         tc = Timecard()
         entry = timecard_entry.return_timecard_entry()
