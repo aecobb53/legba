@@ -1,8 +1,8 @@
-from fastapi import FastAPI, Request, Query
+from fastapi import FastAPI, Query, Request
 from fastapi.responses import HTMLResponse, ORJSONResponse
 
 from parse_ifsc import search_ifsc_data
-
+from .classes.timecard import Timecard
 
 appname = 'borderlands'
 
@@ -47,3 +47,16 @@ async def ifsc_current_rankings_data(requests: Request):
         "data": data
     }
     return content
+
+
+@app.get('/timecard')
+async def timecard_get(requests: Request):
+    tc = Timecard()
+    return {'get': 'timecard'}
+
+
+@app.post('/timecard-entry')
+async def timecard_get(requests: Request):
+    tc = Timecard()
+    return {'post': 'timecard-entry'}
+
