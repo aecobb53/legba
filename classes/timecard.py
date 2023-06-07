@@ -11,7 +11,7 @@ datetime_str = "%Y%m%d_%H%M%S.%fZ"
 
 
 class TimecardEntry(BaseModel):
-    _id: str = None
+    identifier: str = None
     update_datetime: str = None
     changelog: List[str] = []
     charge_code: str = None
@@ -24,13 +24,13 @@ class TimecardEntry(BaseModel):
     # Id
     @property
     def id(self):
-        if self._id is None:
-            self._id = str(uuid4())
-        return self._id
+        if self.identifier is None:
+            self.identifier = str(uuid4())
+        return self.identifier
 
     @id.setter
     def id(self, new_id):
-        self._id = new_id
+        self.identifier = new_id
 
     @property
     def put(self):
@@ -51,8 +51,9 @@ class TimecardEntry(BaseModel):
 
     @classmethod
     def build(cls, dct):
+        print('A')
         content = {
-            '_id': dct.get('id'),
+            'identifier': dct.get('id'),
             'update_datetime': dct.get('update_datetime'),
             'changelog': dct.get('changelog'),
             'charge_code': dct.get('charge_code'),
@@ -62,7 +63,9 @@ class TimecardEntry(BaseModel):
             'start_time': dct.get('start_time'),
             'end_time': dct.get('end_time'),
         }
+        print('B')
         obj = cls(**content)
+        print('C')
         return obj
 
 
