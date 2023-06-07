@@ -89,7 +89,7 @@ async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
         tc.save()
         logger.debug(f"Record created: {entry.datetime}")
     except Exception as err:
-        return {'message': "Exception raised"}
+        return {'message': f"Exception raised: {err}"}
         # raise HTTPException(
         #     status_code=500,
         #     detail=f'Exception raised',
