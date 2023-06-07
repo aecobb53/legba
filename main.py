@@ -2,9 +2,9 @@ from fastapi import FastAPI, Query, Request
 from fastapi.responses import HTMLResponse, ORJSONResponse
 
 from parse_ifsc import search_ifsc_data
-from .classes.timecard import Timecard
+# from .classes.timecard import Timecard
 
-appname = 'borderlands'
+appname = 'legba'
 
 app = FastAPI()
 
@@ -51,12 +51,13 @@ async def ifsc_current_rankings_data(requests: Request):
 
 @app.get('/timecard')
 async def timecard_get(requests: Request):
-    tc = Timecard()
+    # tc = Timecard()
+    x=1
     return {'get': 'timecard'}
 
 
 @app.post('/timecard-entry')
 async def timecard_get(requests: Request):
-    tc = Timecard()
+    # tc = Timecard()
+    x=1
     return {'post': 'timecard-entry'}
-
