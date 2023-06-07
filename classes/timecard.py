@@ -11,7 +11,7 @@ datetime_str = "%Y%m%d_%H%M%S.%fZ"
 
 
 class TimecardEntry(BaseModel):
-    identifier: str = None
+    _id: str = None
     update_datetime: str = None
     changelog: List[str] = []
     charge_code: str = None
@@ -21,14 +21,23 @@ class TimecardEntry(BaseModel):
     start_time: str = None
     end_time: str = None
 
+    # Id
+    @property
+    def id(self):
+        if self._id is None:
+            self._id = str(uuid4())
+        return self._id
+
+    @id.setter
+    def id(self, new_id):
+        self._id = new_id
+
     @property
     def put(self):
         if self.update_datetime is None:
             self.update_datetime = datetime.strftime(datetime.utcnow(), datetime_str)
-        if self.identifier is None:
-            self.identifier = str(uuid4())
         content = {
-            'identifier': self.identifier,
+            'id': self.id,
             'update_datetime': self.update_datetime,
             'changelog': self.changelog,
             'charge_code': self.charge_code,
