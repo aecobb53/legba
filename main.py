@@ -4,7 +4,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 from logging import FileHandler  # , StreamHandler
 from fastapi import FastAPI, Query, Request
-from fastapi.responses import HTMLResponse, ORJSONResponse, status, HTTPException
+from fastapi.responses import HTMLResponse, ORJSONResponse
 
 from parse_ifsc import search_ifsc_data
 from classes.timecard import Timecard, POSTTimecardEntry
