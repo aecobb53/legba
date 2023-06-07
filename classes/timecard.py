@@ -47,8 +47,11 @@ class Timecard:
         records = []
         if filepath is None:
             filepath = self.default_file
-        with open(filepath, 'r') as tf:
-            timecard_data = json.load(tf)
+        try:
+            with open(filepath, 'r') as tf:
+                timecard_data = json.load(tf)
+        except Exception as err:
+            print(err)
         for item in timecard_data.get('records', []):
             item = json.loads(item)
             records.append(TimecardEntry.build(item))
