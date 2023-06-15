@@ -5,6 +5,7 @@ websocket
 websockets
 pyyaml
 requests_html
+pytz
 
 # Daemon
 uvicorn
