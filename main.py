@@ -5,6 +5,7 @@ from logging.handlers import RotatingFileHandler
 from logging import FileHandler  # , StreamHandler
 from fastapi import FastAPI, Query, Request
 from fastapi.responses import HTMLResponse, ORJSONResponse
+from typing import Dict
 
 from parse_ifsc import search_ifsc_data
 from classes.timecard import Timecard, POSTTimecardEntry
@@ -74,8 +75,7 @@ async def ifsc_current_rankings_data(requests: Request):
 async def timecard_get(requests: Request):
     logger.debug('GET on /timecard')
     tc = Timecard()
-    x=1
-    return {'get': 'timecard'}
+    return tc.data
 
 
 @app.post('/timecard-entry')
@@ -87,9 +87,17 @@ async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
         tc.add_entry(entry=entry)
         tc.save()
         logger.debug(f"Record created: {entry.id}")
+        logger.debug(f"Record created: {entry.idu}")
     except Exception as err:
         return {'message': f"Internal Exception raised: {err}"}
     # finally:
     #     x=1
     # x=1
     return entry.put
+
+@app.put('/timecard')
+async def timecard_get(requests: Request, timecard_data: Dict):
+    logger.debug('PUT on /timecard')
+    tc = Timecard()
+    tc.data = timecard_data
+    return tc.data

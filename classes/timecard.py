@@ -2,13 +2,22 @@ import os
 import json
 
 from pydantic import BaseModel
-from typing import List
-from datetime import datetime
+from enum import Enum
+from typing import List, Union
+from datetime import datetime, timedelta
 from uuid import uuid4
+
+from .utils import parse_potential_timestring
 
 
 datetime_str = "%Y%m%d_%H%M%S.%fZ"
 
+
+class ShorthandMapping(Enum):
+    MEETING = 'CHARGE.CODE'
+    WORK = 'CHARGE.CODE'
+    WORKING = 'CHARGE.CODE'
+    OVERHEAD = 'CHARGE.CODE'
 
 class TimecardEntry(BaseModel):
     identifier: str = None
@@ -18,8 +27,9 @@ class TimecardEntry(BaseModel):
     shorthand: str = None
     note: str = None
     description: str = None
-    start_time: str = None
-    end_time: str = None
+    start_time: Union[datetime, timedelta] = None
+    end_time: Union[datetime, timedelta] = None
+    duration: Union[datetime, timedelta] = None
 
     # Id
     @property
@@ -33,6 +43,19 @@ class TimecardEntry(BaseModel):
         self.identifier = new_id
 
     @property
+    def calculated_duration(self):
+        if self.duration is not None:
+            return self.duration
+        return self.end_time - self.start_time
+
+    @property
+    def calculated_charge_code(self):
+        code = self.charge_code
+        if code is None:
+            code = getattr(ShorthandMapping, self.shorthand.upper()).value
+        return code
+
+    @property
     def put(self):
         if self.update_datetime is None:
             self.update_datetime = datetime.strftime(datetime.utcnow(), datetime_str)
@@ -44,28 +67,27 @@ class TimecardEntry(BaseModel):
             'shorthand': self.shorthand,
             'note': self.note,
             'description': self.description,
-            'start_time': self.start_time,
-            'end_time': self.end_time,
+            'start_time': datetime.strftime(self.start_time, datetime_str) if self.start_time is not None else None,
+            'end_time': datetime.strftime(self.end_time, datetime_str) if self.end_time is not None else None,
+            'duration': datetime.strftime(self.duration, datetime_str) if self.duration is not None else None,
         }
         return content
 
     @classmethod
     def build(cls, dct):
-        print('A')
         content = {
             'identifier': dct.get('id'),
             'update_datetime': dct.get('update_datetime'),
-            'changelog': dct.get('changelog'),
+            'changelog': dct.get('changelog', []),
             'charge_code': dct.get('charge_code'),
             'shorthand': dct.get('shorthand'),
             'note': dct.get('note'),
             'description': dct.get('description'),
-            'start_time': dct.get('start_time'),
-            'end_time': dct.get('end_time'),
+            'start_time': parse_potential_timestring(dct.get('start_time')),
+            'end_time': parse_potential_timestring(dct.get('end_time')),
+            'duration': parse_potential_timestring(dct.get('duration')),
         }
-        print('B')
         obj = cls(**content)
-        print('C')
         return obj
 
 
@@ -126,6 +148,8 @@ class Timecard:
                 pass
             with open(filepath, 'w') as tf:
                 tf.write(json.dumps(data, indent=4))
+        finally:
+            self.data = None
 
     def add_entry(self, entry):
         data = self.data
@@ -137,13 +161,27 @@ class Timecard:
 
 class POSTTimecardEntry(BaseModel):
     charge_code: str = None
+    shorthand: str = None
     note: str = None
     description: str = None
     start_time: str = None
     end_time: str = None
 
     def return_timecard_entry(self):
-        obj = TimecardEntry()
+        # charge_code
+        # shorthand
+        # note
+        # description
+        # start_time
+        # end_time
+        obj = TimecardEntry(
+            charge_code=self.charge_code,
+            shorthand=self.shorthand,
+            note=self.note,
+            description=self.description,
+            start_time=self.start_time,
+            end_time=self.end_time,
+        )
         return obj
 
 
