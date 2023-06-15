@@ -7,12 +7,12 @@ from datetime import datetime
 
 # classes_path = os.path.join(os.path.abspath('.'), 'calsses')
 # sys.path.append(classes_path)
-response = requests.get('http://hamster.nax.lol:8201/timecard')
+# response = requests.get('http://hamster.nax.lol:8201/timecard')
 
 def reset_database():
     # response = requests.get('http://hamster.nax.lol:8201/timecard')
     payload = {'timecard_data': {'records': []}}
-    response = requests.put('http://hamster.nax.lol:8201/timecard', data=payload)
+    response = requests.put('http://hamster.nax.lol:8201/timecard', json=payload)
     a = response.json()
     x=1
 x=1

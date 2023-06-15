@@ -8,7 +8,7 @@ from fastapi.responses import HTMLResponse, ORJSONResponse
 from typing import Dict
 
 from parse_ifsc import search_ifsc_data
-from classes.timecard import Timecard, POSTTimecardEntry
+from classes.timecard import Timecard, POSTTimecardEntry, PUTTimecard
 
 appname = 'legba'
 
@@ -79,7 +79,7 @@ async def timecard_get(requests: Request):
 
 
 @app.put('/timecard')
-async def timecard_put(requests: Request, timecard_data=None):
+async def timecard_put(requests: Request, timecard_data: PUTTimecard = None):
     logger.debug('PUT on /timecard')
     logger.debug(f"timecard_data: {timecard_data}")
     tc = Timecard()
