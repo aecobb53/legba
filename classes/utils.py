@@ -1,7 +1,7 @@
 import re
 
 from datetime import datetime, timedelta
-from pytz import timezone
+# from pytz import timezone
 
 from phtml import HtmlReader
 
@@ -67,8 +67,6 @@ def parse_datetime_string(time_s):
                 if group2.startswith(':'):
                     minutes = str(int(group2[1:])).zfill(2)
             if hours is None:
-                if group1 in self.config['time_zones']:
-                    group1 = self.config['time_zones'][group1]
                 tz = timezone(group1)
                 hours = int(tz.utcoffset(datetime.now()).total_seconds() / (60*60))
                 if hours < 0:
