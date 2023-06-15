@@ -134,9 +134,20 @@ reset_database()
 with open('data/timecard/dev_timesheet_for_use_and_testing.json', 'r') as jf:
     data = json.load(jf)
 
-for record in data['records']:
+for date, record in data.items():
+    x=1
+    url = f"http://hamster.nax.lol:8201/timecard-entry"
+    body = {}
+    response = requests.post(
+        url,
+        json=body
+    )
+    a = response.json()
     x=1
 
+x=1
+response = requests.get('http://hamster.nax.lol:8201/timecard')
+a = response.json()
 x=1
 
 

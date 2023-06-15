@@ -96,8 +96,8 @@ async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
         tc.add_entry(entry=entry)
         tc.save()
         logger.debug(f"Record created: {entry.id}")
-        logger.debug(f"Record created: {entry.idu}")
     except Exception as err:
+        logger.error(f"Internal Exception raised: {err}")
         return {'message': f"Internal Exception raised: {err}"}
     # finally:
     #     x=1
