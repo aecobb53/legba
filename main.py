@@ -87,6 +87,19 @@ async def timecard_put(requests: Request, timecard_data: PUTTimecard):
     return tc.data
 
 
+@app.post('/timecard-set')
+async def timecard_post(requests: Request, timecard_data: PUTTimecard):
+    logger.debug('POST on /timecard-set')
+    try:
+        tc = Timecard()
+        tc.save(data=timecard_data.put)
+        logger.debug(f"Database overwritten")
+    except Exception as err:
+        logger.error(f"Internal Exception raised: {err}")
+        return {'message': f"Internal Exception raised: {err}"}
+    return tc.data
+
+
 @app.post('/timecard-entry')
 async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
     logger.debug('POST on /timecard-entry')

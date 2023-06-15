@@ -12,7 +12,7 @@ from datetime import datetime
 def reset_database():
     # response = requests.get('http://hamster.nax.lol:8201/timecard')
     payload = {'timecard_data': {'records': []}}
-    response = requests.put('http://hamster.nax.lol:8201/timecard', json=payload)
+    response = requests.post('http://hamster.nax.lol:8201/timecard-set', json=payload)
     a = response.json()
     x=1
 x=1

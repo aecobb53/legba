@@ -187,3 +187,10 @@ class POSTTimecardEntry(BaseModel):
 
 class PUTTimecard(BaseModel):
     records: List
+
+    @property
+    def put(self):
+        content = {
+            'records': self.records
+        }
+        return content
