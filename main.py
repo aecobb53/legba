@@ -78,6 +78,14 @@ async def timecard_get(requests: Request):
     return tc.data
 
 
+@app.put('/timecard')
+async def timecard_get(requests: Request, timecard_data: Dict):
+    logger.debug('PUT on /timecard')
+    tc = Timecard()
+    tc.save(data=timecard_data)
+    return tc.data
+
+
 @app.post('/timecard-entry')
 async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
     logger.debug('POST on /timecard-entry')
@@ -95,9 +103,4 @@ async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
     # x=1
     return entry.put
 
-@app.put('/timecard')
-async def timecard_get(requests: Request, timecard_data: Dict):
-    logger.debug('PUT on /timecard')
-    tc = Timecard()
-    tc.data = timecard_data
-    return tc.data
+
