@@ -79,7 +79,7 @@ async def timecard_get(requests: Request):
 
 
 @app.put('/timecard')
-async def timecard_put(requests: Request, timecard_data: PUTTimecard = None):
+async def timecard_put(requests: Request, timecard_data: PUTTimecard):
     logger.debug('PUT on /timecard')
     logger.debug(f"timecard_data: {timecard_data}")
     tc = Timecard()

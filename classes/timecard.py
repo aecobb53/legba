@@ -185,3 +185,5 @@ class POSTTimecardEntry(BaseModel):
         return obj
 
 
+class PUTTimecard(BaseModel):
+    records: List

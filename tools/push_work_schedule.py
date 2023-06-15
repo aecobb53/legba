@@ -134,6 +134,9 @@ reset_database()
 with open('data/timecard/dev_timesheet_for_use_and_testing.json', 'r') as jf:
     data = json.load(jf)
 
+for record in data['records']:
+    x=1
+
 x=1
 
 
