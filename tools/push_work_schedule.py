@@ -11,8 +11,8 @@ response = requests.get('http://hamster.nax.lol:8201/timecard')
 
 def reset_database():
     # response = requests.get('http://hamster.nax.lol:8201/timecard')
-    payload = {'records': []}
-    response = requests.put('http://hamster.nax.lol:8201/timecard')
+    payload = {'timecard_data': {'records': []}}
+    response = requests.put('http://hamster.nax.lol:8201/timecard', data=payload)
     a = response.json()
     x=1
 x=1
