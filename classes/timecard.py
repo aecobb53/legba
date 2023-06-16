@@ -189,14 +189,29 @@ class POSTTimecardEntry(BaseModel):
         #         raise ValueError('If start and end times are not provided, a durations is required')
         #     if self.start_time is None and self.end_time is None and self.day is None:
         #         raise ValueError('If start and end times are both None, a day is required')
-        obj = TimecardEntry(
-            charge_code=self.charge_code,
-            shorthand=self.shorthand,
-            note=self.note,
-            description=self.description,
-            start_time=self.start_time,
-            end_time=self.end_time,
-        )
+        content = {
+            'charge_code': self.charge_code,
+            'shorthand': self.shorthand,
+            'note': self.note,
+            'description': self.description,
+            # 'start_time': self.start_time,
+            # 'end_time': self.end_time,
+        }
+        if self.start_time is not None:
+            content['start_time'] = parse_potential_timestring(self.start_time)
+
+        if self.end_time is not None:
+            content['end_time'] = parse_potential_timestring(self.end_time)
+
+        if self.duration is not None:
+            content['duration'] = parse_potential_timestring(self.duration)
+
+        if self.day is not None:
+            content['day'] = parse_potential_timestring(self.day)
+
+        print(content)
+
+        obj = TimecardEntry(**content)
         return obj
 
 
