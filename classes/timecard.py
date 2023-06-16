@@ -171,6 +171,16 @@ class POSTTimecardEntry(BaseModel):
     day: str = None
 
     def return_timecard_entry(self):
+
+        print(f"charge_code: {self.charge_code}")
+        print(f"shorthand: {self.shorthand}")
+        print(f"note: {self.note}")
+        print(f"description: {self.description}")
+        print(f"start_time: {self.start_time}")
+        print(f"end_time: {self.end_time}")
+        print(f"duration: {self.duration}")
+        print(f"day: {self.day}")
+
         if self.start_time is None or self.end_time is None:
             if self.duration is None:
                 raise ValueError('If start and end times are not provided, a durations is required')
