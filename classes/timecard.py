@@ -181,11 +181,14 @@ class POSTTimecardEntry(BaseModel):
         print(f"duration: {self.duration}")
         print(f"day: {self.day}")
 
-        if self.start_time is None or self.end_time is None:
-            if self.duration is None:
-                raise ValueError('If start and end times are not provided, a durations is required')
-            if self.start_time is None and self.end_time is None and self.day is None:
-                raise ValueError('If start and end times are both None, a day is required')
+        if self.start_time is None and self.end_time is None and self.day is None:
+            raise ValueError('If start and end times are both None, a day is required')
+
+        # if self.start_time is None or self.end_time is None:
+        #     if self.duration is None:
+        #         raise ValueError('If start and end times are not provided, a durations is required')
+        #     if self.start_time is None and self.end_time is None and self.day is None:
+        #         raise ValueError('If start and end times are both None, a day is required')
         obj = TimecardEntry(
             charge_code=self.charge_code,
             shorthand=self.shorthand,
