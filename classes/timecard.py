@@ -27,9 +27,10 @@ class TimecardEntry(BaseModel):
     shorthand: str = None
     note: str = None
     description: str = None
-    start_time: Union[datetime, timedelta] = None
-    end_time: Union[datetime, timedelta] = None
+    start_time: datetime = None
+    end_time: datetime = None
     duration: Union[datetime, timedelta] = None
+    day: datetime = None
 
     # Id
     @property
@@ -166,14 +167,15 @@ class POSTTimecardEntry(BaseModel):
     description: str = None
     start_time: str = None
     end_time: str = None
+    duration: str = None
+    day: str = None
 
     def return_timecard_entry(self):
-        # charge_code
-        # shorthand
-        # note
-        # description
-        # start_time
-        # end_time
+        if self.start_time is None or self.end_time is None:
+            if self.duration is None:
+                raise ValueError('If start and end times are not provided, a durations is required')
+            if self.start_time is None and self.end_time is None:
+                raise ValueError('If start and end times are both None, a day is required')
         obj = TimecardEntry(
             charge_code=self.charge_code,
             shorthand=self.shorthand,

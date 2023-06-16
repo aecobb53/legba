@@ -3,7 +3,7 @@
 import json
 import re
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # classes_path = os.path.join(os.path.abspath('.'), 'calsses')
 # sys.path.append(classes_path)
@@ -11,7 +11,7 @@ from datetime import datetime
 
 def reset_database():
     # response = requests.get('http://hamster.nax.lol:8201/timecard')
-    payload = {'timecard_data': {'records': []}}
+    payload = {'records': []}
     response = requests.post('http://hamster.nax.lol:8201/timecard-set', json=payload)
     a = response.json()
     x=1
@@ -136,18 +136,28 @@ with open('data/timecard/dev_timesheet_for_use_and_testing.json', 'r') as jf:
 
 for date, record in data.items():
     x=1
-    url = f"http://hamster.nax.lol:8201/timecard-entry"
-    body = {}
-    response = requests.post(
-        url,
-        json=body
-    )
-    a = response.json()
-    x=1
+    for entry in record['entries']:
+        url = f"http://hamster.nax.lol:8201/timecard-entry"
+        body = {
+            'shorthand': entry['shorthand'],
+            'day': date,
+        }
+        if 'starttime' in entry:
+            body['start_time'] = f"{date}T{entry['starttime']}"
+        if 'endtime' in entry:
+            body['end_time'] = f"{date}T{entry['endtime']}"
+        if 'duration' in entry:
+            body['duration'] = float(entry['duration'])
+        response = requests.post(
+            url,
+            json=body
+        )
+        a = response.json()
+        x=1
 
 x=1
 response = requests.get('http://hamster.nax.lol:8201/timecard')
-a = response.json()
+resp = response.json()
 x=1
 
 
