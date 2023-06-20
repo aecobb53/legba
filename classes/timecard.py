@@ -62,7 +62,7 @@ class TimecardEntry(BaseModel):
             self.update_datetime = datetime.strftime(datetime.utcnow(), datetime_str)
         duration = None
         if self.duration:
-            hrs, rem = divmod(self.duration, 3600)
+            hrs, rem = divmod(self.duration.seconds, 3600)
             mins, rem = divmod(rem, 60)
             duration = f"{hrs}:{mins}"
         content = {
