@@ -148,6 +148,7 @@ for date, record in data.items():
             body['end_time'] = f"{date}T{entry['endtime']}"
         if 'duration' in entry:
             body['duration'] = float(entry['duration'])
+        x=1
         response = requests.post(
             url,
             json=body
