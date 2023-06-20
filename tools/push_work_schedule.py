@@ -154,6 +154,8 @@ for date, record in data.items():
         )
         a = response.json()
         x=1
+        break
+    break
 
 x=1
 response = requests.get('http://hamster.nax.lol:8201/timecard')
