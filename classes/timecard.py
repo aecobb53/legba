@@ -181,7 +181,7 @@ class Timecard:
         }
         data = self.data
         for record in data['records']:
-            print(record)
+            print(f"RECORD:   {record}")
             # output['records'].append(
 
             # )
