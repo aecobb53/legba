@@ -175,6 +175,19 @@ class Timecard:
         data['records'].append(entry)
         self.data = data
 
+    def display_data(self):
+        output = {
+            'records': []
+        }
+        data = self.data
+        for record in data['records']:
+            print(record)
+            # output['records'].append(
+
+            # )
+        return {}
+        
+
 
 class POSTTimecardEntry(BaseModel):
     charge_code: str = None
