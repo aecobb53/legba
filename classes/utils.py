@@ -88,7 +88,6 @@ def parse_time_str(time_s):
     else:
         offset = '+0000'
     time.append(offset)
-    # print(time)
 
     time = '-'.join(time)
     obj = datetime.strptime(time, '%Y-%m-%d-%H-%M-%S-%f-%z')
