@@ -6,89 +6,93 @@ from pytz import timezone
 from phtml import HtmlReader
 
 
+config = {
+    'time_zones': {
+        "Z": "UTC",
+        "M": "America/Denver",
+    }
+}
+
 # def read_css_file(path):
 #     with open(path, 'r') as cf:
 
-def parse_datetime_string(time_s):
-        re_datetime = r'^(\d{4})-?(\d{2})?-?(\d{2})?T?(\d{2})?[:]?(\d{2})?[:]?(\d{2})?\.?(\d+)?([A-z]+|[\+-]\d{2}(:\d{2})?)?'
-        search = re.match(re_datetime, time_s)
-        time = []
-        print(time_s)
-        if search is None:
-            raise ValueError('Time is not parsable')
-        for i in range(1,4):
-            try:
-                group = search.group(i)
-                if group is None:
-                    raise TypeError
-                time.append(group)
-            except TypeError:
-                time.append('01')
-            except IndexError:
-                time.append('01')
-        for i in range(4,7):
-            try:
-                group = search.group(i)
-                if group is None:
-                    raise TypeError
-                time.append(group)
-            except TypeError:
-                time.append('00')
-            except IndexError:
-                time.append('00')
+def parse_time_str(time_s):
+    re_datetime = r'^(\d{4})-?(\d{2})?-?(\d{2})?T?(\d{2})?[:]?(\d{2})?[:]?(\d{2})?\.?(\d+)?([A-z]+|[\+-]\d{2}(:\d{2})?)?'
+    search = re.match(re_datetime, time_s)
+    time = []
+    if search is None:
+        raise ValueError('Time is not parsable')
+    for i in range(1,4):
         try:
-            group = search.group(7)[:6]
+            group = search.group(i)
+            if group is None:
+                raise TypeError
             time.append(group)
         except TypeError:
-            time.append('0')
+            time.append('01')
         except IndexError:
-            time.append('0')
+            time.append('01')
+    for i in range(4,7):
+        try:
+            group = search.group(i)
+            if group is None:
+                raise TypeError
+            time.append(group)
+        except TypeError:
+            time.append('00')
+        except IndexError:
+            time.append('00')
+    try:
+        group = search.group(7)[:6]
+        time.append(group)
+    except TypeError:
+        time.append('0')
+    except IndexError:
+        time.append('0')
 
-        print(search)
-        print(search.groups(0))
-
-        if search.group(8):
-            group1 = search.group(8)
-            hours = None
-            if group1:
-                if group1.startswith('+'):
-                    group1 = group1[1:]
-                if ':' in group1:
-                    group1 = group1.split(':')[0]
-                try:
-                    hours = int(group1)
-                    if hours < 0:
-                        hours = f"-{str(abs(hours)).zfill(2)}"
-                    elif hours > 0:
-                        hours = f"+{str(abs(hours)).zfill(2)}"
-                    else:
-                        hours = '+00'
-                except ValueError:
-                    pass
-            group2 = search.group(9)
-            minutes = '00'
-            if group2:
-                if group2.startswith(':'):
-                    minutes = str(int(group2[1:])).zfill(2)
-            if hours is None:
-                print(group1)
-                tz = timezone(group1)
-                hours = int(tz.utcoffset(datetime.now()).total_seconds() / (60*60))
+    if search.group(8):
+        group1 = search.group(8)
+        hours = None
+        if group1:
+            if group1.startswith('+'):
+                group1 = group1[1:]
+            if ':' in group1:
+                group1 = group1.split(':')[0]
+            try:
+                hours = int(group1)
                 if hours < 0:
                     hours = f"-{str(abs(hours)).zfill(2)}"
                 elif hours > 0:
                     hours = f"+{str(abs(hours)).zfill(2)}"
                 else:
                     hours = '+00'
-            offset = f"{hours}{minutes}"
-        else:
-            offset = '+0000'
-        time.append(offset)
-        # print(time)
+            except ValueError:
+                pass
+        group2 = search.group(9)
+        minutes = '00'
+        if group2:
+            if group2.startswith(':'):
+                minutes = str(int(group2[1:])).zfill(2)
+        if hours is None:
+            if group1 in config['time_zones']:
+                group1 = config['time_zones'][group1]
+            tz = timezone(group1)
+            hours = int(tz.utcoffset(datetime.now()).total_seconds() / (60*60))
+            if hours < 0:
+                hours = f"-{str(abs(hours)).zfill(2)}"
+            elif hours > 0:
+                hours = f"+{str(abs(hours)).zfill(2)}"
+            else:
+                hours = '+00'
+        offset = f"{hours}{minutes}"
+    else:
+        offset = '+0000'
+    time.append(offset)
+    # print(time)
 
-        time = '-'.join(time)
-        obj = datetime.strptime(time, '%Y-%m-%d-%H-%M-%S-%f-%z')
-        return obj
+    time = '-'.join(time)
+    obj = datetime.strptime(time, '%Y-%m-%d-%H-%M-%S-%f-%z')
+    return obj
 
 def parse_datetime_shorthand(time_s):
     time_items = {
