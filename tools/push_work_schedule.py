@@ -155,7 +155,6 @@ for date, record in data.items():
         )
         a = response.json()
         x=1
-        break
     break
 
 x=1

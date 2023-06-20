@@ -76,6 +76,13 @@ class TimecardEntry(BaseModel):
 
     @classmethod
     def build(cls, dct):
+        duration = None
+        if dct.get('duration'):
+            try:
+                hours, minutes, seconds = duration.split(':')
+                duration = timedelta(hours=hours, minutes=minutes, seconds=seconds)
+            except:
+                duration = timedelta(float(dct['duration']))
         content = {
             'identifier': dct.get('id'),
             'update_datetime': dct.get('update_datetime'),
@@ -87,7 +94,7 @@ class TimecardEntry(BaseModel):
             'start_time': parse_potential_timestring(dct.get('start_time')),
             'end_time': parse_potential_timestring(dct.get('end_time')),
             # 'duration': parse_potential_timestring(dct.get('duration')),
-            'duration': timedelta(float(dct['duration'])) if dct.get('duration', False) else None,
+            'duration': duration,
         }
         obj = cls(**content)
         return obj
