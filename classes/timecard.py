@@ -64,7 +64,8 @@ class TimecardEntry(BaseModel):
         if self.duration:
             hrs, rem = divmod(self.duration.seconds, 3600)
             mins, rem = divmod(rem, 60)
-            duration = f"{hrs}:{mins}"
+            secs, rem = divmod(rem, 60)
+            duration = f"{hrs}:{mins}:{secs}"
         content = {
             'id': self.id,
             'update_datetime': self.update_datetime,
