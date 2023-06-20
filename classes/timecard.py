@@ -60,6 +60,11 @@ class TimecardEntry(BaseModel):
     def put(self):
         if self.update_datetime is None:
             self.update_datetime = datetime.strftime(datetime.utcnow(), datetime_str)
+        duration = None
+        if self.duration:
+            hrs, rem = divmod(self.duration, 3600)
+            mins, rem = divmod(rem, 60)
+            duration = f"{hrs}:{mins}"
         content = {
             'id': self.id,
             'update_datetime': self.update_datetime,
@@ -70,7 +75,7 @@ class TimecardEntry(BaseModel):
             'description': self.description,
             'start_time': datetime.strftime(self.start_time, datetime_str) if self.start_time is not None else None,
             'end_time': datetime.strftime(self.end_time, datetime_str) if self.end_time is not None else None,
-            'duration': str(self.duration) if self.duration is not None else None,
+            'duration': duration,
         }
         return content
 
