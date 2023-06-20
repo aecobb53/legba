@@ -182,11 +182,11 @@ class Timecard:
         data = self.data
         for record in data['records']:
             print(f"RECORD:   {record}")
-            # output['records'].append(
+            output['records'].append(
+                record.put
+            )
+        return output
 
-            # )
-        return {}
-        
 
 
 class POSTTimecardEntry(BaseModel):
