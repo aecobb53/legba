@@ -209,7 +209,7 @@ class POSTTimecardEntry(BaseModel):
         if self.day is not None:
             content['day'] = parse_potential_timestring(self.day)
 
-        # print(content)
+        print(content)
 
         obj = TimecardEntry(**content)
         return obj
