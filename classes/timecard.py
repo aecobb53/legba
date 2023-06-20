@@ -10,7 +10,7 @@ from uuid import uuid4
 from .utils import parse_potential_timestring
 
 
-datetime_str = "%Y%m%d_%H%M%S.%fZ"
+datetime_str = "%Y%m%dT%H%M%S.%fZ"
 
 
 class ShorthandMapping(Enum):
@@ -156,10 +156,8 @@ class Timecard:
         data = self.data
         if 'records' not in data:
             data['records'] = []
-        print(f'data loaded: {data}')
         data['records'].append(entry)
         self.data = data
-        print('finished adding entry')
 
 
 class POSTTimecardEntry(BaseModel):
@@ -211,7 +209,7 @@ class POSTTimecardEntry(BaseModel):
         if self.day is not None:
             content['day'] = parse_potential_timestring(self.day)
 
-        print(content)
+        # print(content)
 
         obj = TimecardEntry(**content)
         return obj
