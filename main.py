@@ -75,7 +75,7 @@ async def ifsc_current_rankings_data(requests: Request):
 async def timecard_get(requests: Request):
     logger.debug('GET on /timecard')
     tc = Timecard()
-    return tc.data
+    return tc.display_data()
 
 
 @app.put('/timecard')
