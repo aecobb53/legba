@@ -70,7 +70,7 @@ class TimecardEntry(BaseModel):
             'description': self.description,
             'start_time': datetime.strftime(self.start_time, datetime_str) if self.start_time is not None else None,
             'end_time': datetime.strftime(self.end_time, datetime_str) if self.end_time is not None else None,
-            'duration': datetime.strftime(self.duration, datetime_str) if self.duration is not None else None,
+            'duration': str(self.duration) if self.duration is not None else None,
         }
         return content
 
@@ -86,7 +86,8 @@ class TimecardEntry(BaseModel):
             'description': dct.get('description'),
             'start_time': parse_potential_timestring(dct.get('start_time')),
             'end_time': parse_potential_timestring(dct.get('end_time')),
-            'duration': parse_potential_timestring(dct.get('duration')),
+            # 'duration': parse_potential_timestring(dct.get('duration')),
+            'duration': timedelta(float(dct['duration'])) if dct.get('duration', False) else None,
         }
         obj = cls(**content)
         return obj
