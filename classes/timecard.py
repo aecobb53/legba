@@ -172,14 +172,14 @@ class POSTTimecardEntry(BaseModel):
 
     def return_timecard_entry(self):
 
-        print(f"charge_code: {self.charge_code}")
-        print(f"shorthand: {self.shorthand}")
-        print(f"note: {self.note}")
-        print(f"description: {self.description}")
-        print(f"start_time: {self.start_time}")
-        print(f"end_time: {self.end_time}")
-        print(f"duration: {self.duration}")
-        print(f"day: {self.day}")
+        # print(f"charge_code: {self.charge_code}")
+        # print(f"shorthand: {self.shorthand}")
+        # print(f"note: {self.note}")
+        # print(f"description: {self.description}")
+        # print(f"start_time: {self.start_time}")
+        # print(f"end_time: {self.end_time}")
+        # print(f"duration: {self.duration}")
+        # print(f"day: {self.day}")
 
         if self.start_time is None and self.end_time is None and self.day is None:
             raise ValueError('If start and end times are both None, a day is required')
@@ -209,7 +209,7 @@ class POSTTimecardEntry(BaseModel):
         if self.day is not None:
             content['day'] = parse_potential_timestring(self.day)
 
-        print(content)
+        # print(content)
 
         obj = TimecardEntry(**content)
         return obj

@@ -13,6 +13,7 @@ def parse_datetime_string(time_s):
         re_datetime = r'^(\d{4})-?(\d{2})?-?(\d{2})?T?(\d{2})?[:]?(\d{2})?[:]?(\d{2})?\.?(\d+)?([A-z]+|[\+-]\d{2}(:\d{2})?)?'
         search = re.match(re_datetime, time_s)
         time = []
+        print(time_s)
         if search is None:
             raise ValueError('Time is not parsable')
         for i in range(1,4):
@@ -42,6 +43,9 @@ def parse_datetime_string(time_s):
             time.append('0')
         except IndexError:
             time.append('0')
+
+        print(search)
+        print(search.groups(0))
 
         if search.group(8):
             group1 = search.group(8)
