@@ -67,6 +67,7 @@ def parse_datetime_string(time_s):
                 if group2.startswith(':'):
                     minutes = str(int(group2[1:])).zfill(2)
             if hours is None:
+                print(group1)
                 tz = timezone(group1)
                 hours = int(tz.utcoffset(datetime.now()).total_seconds() / (60*60))
                 if hours < 0:

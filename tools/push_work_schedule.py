@@ -158,6 +158,8 @@ for date, record in data.items():
 x=1
 response = requests.get('http://hamster.nax.lol:8201/timecard')
 resp = response.json()
+with open('data/validation_file.json', 'w') as jf:
+    jf.write(json.dumps(resp, indent=4))
 x=1
 
 
