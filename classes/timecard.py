@@ -156,8 +156,10 @@ class Timecard:
         data = self.data
         if 'records' not in data:
             data['records'] = []
+        print(f'data loaded: {data}')
         data['records'].append(entry)
         self.data = data
+        print('finished adding entry')
 
 
 class POSTTimecardEntry(BaseModel):
