@@ -205,7 +205,7 @@ class POSTTimecardEntry(BaseModel):
 
         if self.duration is not None:
             # content['duration'] = parse_potential_timestring(self.duration)
-            content['duration'] = timedelta(hours=self.duration)
+            content['duration'] = timedelta(hours=float(self.duration))
 
         if self.day is not None:
             content['day'] = parse_potential_timestring(self.day)
