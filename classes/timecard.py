@@ -94,6 +94,7 @@ class TimecardEntry(BaseModel):
             except Exception as err:
                 print(err)
                 duration = timedelta(float(dct['duration']))
+        print(f"DAY:::: {dct.get('day')}")
         day = parse_potential_timestring(dct.get('day'))
         if not day:
             if dct.get('start_time'):
