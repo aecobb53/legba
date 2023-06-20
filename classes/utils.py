@@ -117,6 +117,7 @@ def parse_datetime_shorthand(time_s):
     return time
 
 def parse_potential_timestring(time_s):
+    print(f"potential time string: {time_s}")
     if time_s is None:
         return None
     time = None
@@ -129,5 +130,6 @@ def parse_potential_timestring(time_s):
             time = parse_datetime_shorthand(time_s)
         except Exception as err:
             x=1
+    print(f"Response object thing:L {time}")
     return time
 
