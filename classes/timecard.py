@@ -81,7 +81,7 @@ class TimecardEntry(BaseModel):
             print(dct['duration'])
             try:
                 hours, minutes, seconds = dct['duration'].split(':')
-                duration = timedelta(hours=hours, minutes=minutes, seconds=seconds)
+                duration = timedelta(hours=int(hours), minutes=int(minutes), seconds=int(seconds))
             except Exception as err:
                 print(err)
                 duration = timedelta(float(dct['duration']))
