@@ -78,10 +78,12 @@ class TimecardEntry(BaseModel):
     def build(cls, dct):
         duration = None
         if dct.get('duration'):
+            print(dct['duration'])
             try:
-                hours, minutes, seconds = duration.split(':')
+                hours, minutes, seconds = dct['duration'].split(':')
                 duration = timedelta(hours=hours, minutes=minutes, seconds=seconds)
-            except:
+            except Exception as err:
+                print(err)
                 duration = timedelta(float(dct['duration']))
         content = {
             'identifier': dct.get('id'),
