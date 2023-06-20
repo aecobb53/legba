@@ -94,11 +94,13 @@ class TimecardEntry(BaseModel):
             except Exception as err:
                 print(err)
                 duration = timedelta(float(dct['duration']))
-        if not dct.get('day'):
+        day = parse_potential_timestring(dct.get('day'))
+        if not day:
             if dct.get('start_time'):
-                day = dct['start_time']
+                day = parse_potential_timestring(dct['start_time'])
             else:
-                day = dct['end_time']
+                day = parse_potential_timestring(dct['end_time'])
+        print(f"DAY:   {day}")
         content = {
             'identifier': dct.get('id'),
             'update_datetime': dct.get('update_datetime'),
@@ -111,7 +113,7 @@ class TimecardEntry(BaseModel):
             'end_time': parse_potential_timestring(dct.get('end_time')),
             # 'duration': parse_potential_timestring(dct.get('duration')),
             'duration': duration,
-            'day': parse_potential_timestring(day),
+            'day': day,
         }
         obj = cls(**content)
         return obj
