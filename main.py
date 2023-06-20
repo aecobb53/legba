@@ -103,7 +103,7 @@ async def timecard_post(requests: Request, timecard_data: PUTTimecard):
 @app.post('/timecard-entry')
 async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
     logger.debug('POST on /timecard-entry')
-    print(timecard_entry)
+    # print(timecard_entry)
     try:
         tc = Timecard()
         entry = timecard_entry.return_timecard_entry()

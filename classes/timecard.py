@@ -1,3 +1,4 @@
+from ast import parse
 import os
 import json
 
@@ -11,6 +12,7 @@ from .utils import parse_potential_timestring
 
 
 datetime_str = "%Y%m%dT%H%M%S.%fZ"
+date_str = "%Y%m%dZ"
 
 
 class ShorthandMapping(Enum):
@@ -77,6 +79,7 @@ class TimecardEntry(BaseModel):
             'start_time': datetime.strftime(self.start_time, datetime_str) if self.start_time is not None else None,
             'end_time': datetime.strftime(self.end_time, datetime_str) if self.end_time is not None else None,
             'duration': duration,
+            'day': datetime.strftime(self.end_time, date_str)
         }
         return content
 
@@ -91,6 +94,11 @@ class TimecardEntry(BaseModel):
             except Exception as err:
                 print(err)
                 duration = timedelta(float(dct['duration']))
+        if not dct.get('day'):
+            if dct.get('start_time'):
+                day = dct['start_time']
+            else:
+                day = dct['end_time']
         content = {
             'identifier': dct.get('id'),
             'update_datetime': dct.get('update_datetime'),
@@ -103,6 +111,7 @@ class TimecardEntry(BaseModel):
             'end_time': parse_potential_timestring(dct.get('end_time')),
             # 'duration': parse_potential_timestring(dct.get('duration')),
             'duration': duration,
+            'day': parse_potential_timestring(day),
         }
         obj = cls(**content)
         return obj
@@ -177,12 +186,11 @@ class Timecard:
 
     def display_data(self):
         output = {
-            'records': []
+            'days': []
         }
         data = self.data
-        for record in data['records']:
-            print(f"RECORD:   {record}")
-            output['records'].append(
+        for record in data['days']:
+            output['days'].append(
                 record.put
             )
         return output
@@ -239,7 +247,7 @@ class POSTTimecardEntry(BaseModel):
         if self.day is not None:
             content['day'] = parse_potential_timestring(self.day)
 
-        print(content)
+        # print(content)
 
         obj = TimecardEntry(**content)
         return obj
