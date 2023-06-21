@@ -193,7 +193,10 @@ class DayOfEntries(BaseModel):
                 continue
             codes[charge_code] += DayOfEntries.calculate_duration_value(duration)
         if ShorthandMapping.GENERAL.value in codes:
-            work_value = codes[ShorthandMapping.GENERAL.value] - codes[ShorthandMapping.MEETING.value]
+            try:
+                work_value = codes[ShorthandMapping.GENERAL.value] - codes[ShorthandMapping.MEETING.value]
+            except:
+                work_value = 0
             if ShorthandMapping.WORK.value not in codes:
                 codes[ShorthandMapping.WORK.value] = 0
             codes[ShorthandMapping.WORK.value] += work_value
