@@ -16,10 +16,12 @@ date_str = "%Y%m%dZ"
 
 
 class ShorthandMapping(Enum):
-    MEETING = 'CHARGE.CODE'
-    WORK = 'CHARGE.CODE'
-    WORKING = 'CHARGE.CODE'
-    OVERHEAD = 'CHARGE.CODE'
+    MEETING = 'CHARGE.CODE.1'
+    GENERAL = 'GENERAL'
+    WORK = 'CHARGE.CODE.2'
+    WORKING = 'CHARGE.CODE.2'
+    OVERHEAD = 'CHARGE.CODE.3'
+
 
 class TimecardEntry(BaseModel):
     identifier: str = None
@@ -57,6 +59,10 @@ class TimecardEntry(BaseModel):
         if code is None:
             code = getattr(ShorthandMapping, self.shorthand.upper()).value
         return code
+
+    @property
+    def day_str(self):
+        return datetime.strftime(self.day, date_str)
 
     @property
     def put(self):
@@ -118,6 +124,70 @@ class TimecardEntry(BaseModel):
         }
         obj = cls(**content)
         return obj
+
+
+class DayOfEntries(BaseModel):
+    day: datetime
+    records: List[TimecardEntry] = []
+
+    @property
+    def day_str(self):
+        return datetime.strftime(self.day, date_str)
+
+    @property
+    def day_array_value(self):
+        value = self.day.year * 10_000
+        value += self.day.month * 100
+        value += self.day.day
+        return value
+
+    @property
+    def put(self):
+        content = {
+            'day': self.day,
+            'records': self.day_str,
+        }
+        return content
+
+    @classmethod
+    def build(cls, dct):
+        content = {}
+        obj = cls(**content)
+        return obj
+
+    @classmethod
+    def calculate_duration_value(cls, datetime_obj):
+        hours, rem = divmod(datetime_obj.seconds, 3600)
+        minutes, rem = divmod(rem, 60)
+        minutes = int(minutes / 15) * .25
+        return hours + minutes
+
+    def calculate_details(self):
+        codes = {}
+        for record in self.records:
+            charge_code = None
+            duration = None
+            if record.charge_code:
+                charge_code = record.charge_code
+            elif record.shorthand:
+                try:
+                    charge_code = getattr(ShorthandMapping, record.shorthand.upper()).value
+                except:
+                    charge_code = 'UNKNOWN'
+            if record.duration:
+                duration = record.duration
+            else:
+                duration = record.end_time - record.start_time
+            if charge_code not in codes:
+                codes[charge_code] = 0
+            codes[charge_code] += DayOfEntries.calculate_duration_value(duration)
+        if ShorthandMapping.GENERAL.value in codes:
+            work_value = codes[ShorthandMapping.GENERAL.value] - codes[ShorthandMapping.MEETING.value]
+            if ShorthandMapping.WORK.value not in codes:
+                codes[ShorthandMapping.WORK.value] = 0
+            codes[ShorthandMapping.WORK.value] += work_value
+            del codes[ShorthandMapping.GENERAL.value]
+        return codes
 
 
 class Timecard:
@@ -188,16 +258,20 @@ class Timecard:
         self.data = data
 
     def display_data(self):
-        output = {
-            'days': []
-        }
+        tracking = {}
         data = self.data
-        for record in data['days']:
-            output['days'].append(
-                record.put
-            )
+        for record in data['records']:
+            x=1
+            if record.day_str not in tracking:
+                tracking[record.day_str] = DayOfEntries(day=record.day)
+            tracking[record.day_str].records.append(record)
+        keys_list = list(tracking.keys())
+        keys_list.sort()
+        ordered_tracking = {k: tracking[k] for k in keys_list}
+        output = {}
+        for day, day_obj in ordered_tracking.items():
+            output[day] = day_obj.calculate_details()
         return output
-
 
 
 class POSTTimecardEntry(BaseModel):

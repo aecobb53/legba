@@ -1,5 +1,7 @@
+from sqlite3 import Time
 import pytest
 from classes.timecard import TimecardEntry, Timecard, POSTTimecardEntry
+from datetime import datetime, timedelta
 
 
 class UtilFunctions:
@@ -67,6 +69,19 @@ class TestTimecard(UtilFunctions):
         x=1
         x=1
         x=1
+        x=1
+
+    def test_day_of_entries(self):
+        x=1
+        tc = Timecard()
+        tc.add_entry(TimecardEntry(day=datetime(2023, 11, 12), start_time='2023-11-12T00:00:00Z', end_time='2023-11-12T01:00:00Z', shorthand='work'))
+        tc.add_entry(TimecardEntry(day=datetime(2023, 11, 12), start_time='2023-11-12T02:00:00Z', duration=timedelta(hours=5, minutes=20), shorthand='general'))
+        tc.add_entry(TimecardEntry(day=datetime(2023, 11, 12), end_time='2023-11-12T02:00:00Z', duration=timedelta(hours=3), shorthand='work'))
+        tc.add_entry(TimecardEntry(day=datetime(2023, 11, 12), duration=timedelta(hours=2, minutes=20), shorthand='meeting'))
+        tc.add_entry(TimecardEntry(day=datetime(2023, 11, 11), start_time='2023-11-12T02:00:00Z', duration=timedelta(hours=5, minutes=20), shorthand='work'))
+        tc.add_entry(TimecardEntry(day=datetime(2023, 11, 11), start_time='2023-11-12T02:00:00Z', duration=timedelta(hours=2), shorthand='meeting'))
+        x=1
+        charge_codes_per_day = tc.display_data()
         x=1
 
 
