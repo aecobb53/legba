@@ -18,10 +18,10 @@ date_str = "%Y%m%dZ"
 
 class ShorthandMapping(Enum):
     MEETING = 'CHARGE.CODE.1'
-    GENERAL = 'GENERAL'
     WORK = 'CHARGE.CODE.2'
     WORKING = 'CHARGE.CODE.2'
     OVERHEAD = 'CHARGE.CODE.3'
+    GENERAL = 'GENERAL'
 
 
 class TimecardEntry(BaseModel):
