@@ -1,6 +1,7 @@
 from ast import parse
 import os
 import json
+from unittest.mock import NonCallableMagicMock
 
 from pydantic import BaseModel
 from enum import Enum
@@ -164,6 +165,9 @@ class DayOfEntries(BaseModel):
 
     def calculate_details(self):
         codes = {}
+        """
+        I need to find a way to track records that only have a start and an end time without grabing ones that have either with a duration and not counting them twice
+        """
         for record in self.records:
             charge_code = None
             duration = None
@@ -176,10 +180,17 @@ class DayOfEntries(BaseModel):
                     charge_code = 'UNKNOWN'
             if record.duration:
                 duration = record.duration
-            else:
+            elif record.end_time and record.start_time:
                 duration = record.end_time - record.start_time
+            elif record.end_time and not record.start_time:
+                x=1
+                pass
+                # for record 
+
             if charge_code not in codes:
                 codes[charge_code] = 0
+            if duration is None:
+                continue
             codes[charge_code] += DayOfEntries.calculate_duration_value(duration)
         if ShorthandMapping.GENERAL.value in codes:
             work_value = codes[ShorthandMapping.GENERAL.value] - codes[ShorthandMapping.MEETING.value]
