@@ -110,6 +110,7 @@ async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
         logger.debug(entry)
         tc.add_entry(entry=entry)
         logger.debug(f"DATA: {tc.data}")
+        logger.debug('After data thing')
         tc.save()
         logger.debug(f"Record created: {entry.id}")
     except Exception as err:
