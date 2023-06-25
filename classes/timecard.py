@@ -197,7 +197,7 @@ class DayOfEntries(BaseModel):
         x=1
 
         # Calculating Durations
-        print(json.dumps(durations, indent=4)))
+        print(json.dumps(durations, indent=4))
         for record in durations:
             if record.charge_code not in codes:
                 codes[record.charge_code] = 0
