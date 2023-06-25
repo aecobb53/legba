@@ -9,7 +9,7 @@ from typing import List, Union
 from datetime import datetime, timedelta
 from uuid import uuid4
 
-from .utils import parse_potential_timestring
+from .utils import parse_potential_timestring, parse_potential_hour_timestring, sort_value_for_datetime
 
 
 datetime_str = "%Y%m%dT%H%M%S.%fZ"
@@ -17,10 +17,10 @@ date_str = "%Y%m%dZ"
 
 
 class ShorthandMapping(Enum):
-    MEETING = 'CHARGE.CODE.1'
-    WORK = 'CHARGE.CODE.2'
-    WORKING = 'CHARGE.CODE.2'
-    OVERHEAD = 'CHARGE.CODE.3'
+    MEETING = 'CHARGE.CODE.MEETING'
+    WORK = 'CHARGE.CODE.WORK'
+    WORKING = 'CHARGE.CODE.WORK'
+    OVERHEAD = 'CHARGE.CODE.OVERHEAD'
     GENERAL = 'GENERAL'
 
 
@@ -164,9 +164,13 @@ class DayOfEntries(BaseModel):
         """
         I need to find a way to track records that only have a start and an end time without grabing ones that have either with a duration and not counting them twice
         """
+        start_times  = []
+        end_times  = []
+        durations = []
+        # Setting up tracking buckets
         for record in self.records:
+            # Charge Code
             charge_code = None
-            duration = None
             if record.charge_code:
                 charge_code = record.charge_code
             elif record.shorthand:
@@ -174,29 +178,56 @@ class DayOfEntries(BaseModel):
                     charge_code = getattr(ShorthandMapping, record.shorthand.upper()).value
                 except:
                     charge_code = 'UNKNOWN'
-            if record.duration:
-                duration = record.duration
-            elif record.end_time and record.start_time:
-                duration = record.end_time - record.start_time
-            elif record.end_time and not record.start_time:
-                x=1
-                pass
-                # for record 
-
-            if charge_code not in codes:
-                codes[charge_code] = 0
-            if duration is None:
-                continue
-            codes[charge_code] += DayOfEntries.calculate_duration_value(duration)
+            record.charge_code = charge_code
+            # Time Tracking
+            if record.start_time and record.duration is None:
+                start_times.append(record)
+            elif record.end_time and record.duration is None:
+                end_times.append(record)
+            else:
+                durations.append(record)
         x=1
-        if ShorthandMapping.GENERAL.value in codes:
-            try:
-                work_value = codes[ShorthandMapping.GENERAL.value] - codes[ShorthandMapping.MEETING.value]
-            except:
-                work_value = 0
+        start_times.sort(key=lambda x: sort_value_for_datetime(x.start_time))
+        end_times.sort(key=lambda x: sort_value_for_datetime(x.end_time))
+        x=1
+
+        # Calculating Durations
+        for record in durations:
+            cd = record.charge_code
+            if record.charge_code not in codes:
+                codes[record.charge_code] = 0
+            codes[record.charge_code] += DayOfEntries.calculate_duration_value(record.calculated_duration)
+
+        # Calculating Durations from time differences
+        start_index = 0
+        while start_index < len(start_times):
+            start_obj = start_times[start_index]
+            start_charge_code = start_obj.charge_code
+            if start_charge_code is None:
+                start_charge_code = getattr(ShorthandMapping, start_obj.shorthand.upper()).value
+
+            end_index = None
+            for end_index, obj in enumerate(end_times):
+                end_charge_code = obj.charge_code
+                if end_charge_code is None:
+                    end_charge_code = getattr(ShorthandMapping, obj.shorthand.upper()).value
+
+                if start_charge_code == end_charge_code:
+                    if start_charge_code not in codes:
+                        codes[start_charge_code] = 0
+                    codes[start_charge_code] += DayOfEntries.calculate_duration_value(obj.end_time - start_obj.start_time)
+
+            if end_index is not None:
+                end_times.pop(end_index)
+            start_index += 1
+
+        if codes.get(ShorthandMapping.GENERAL.value):
+            general_work = codes[ShorthandMapping.GENERAL.value]
+            general_work -= codes.get(ShorthandMapping.MEETING.value, 0)
+            general_work -= codes.get(ShorthandMapping.OVERHEAD.value, 0)
             if ShorthandMapping.WORK.value not in codes:
                 codes[ShorthandMapping.WORK.value] = 0
-            codes[ShorthandMapping.WORK.value] += work_value
+            codes[ShorthandMapping.WORK.value] += general_work
             del codes[ShorthandMapping.GENERAL.value]
         return codes
 
@@ -323,14 +354,29 @@ class POSTTimecardEntry(BaseModel):
             # 'start_time': self.start_time,
             # 'end_time': self.end_time,
         }
+
+        if self.day is not None:
+            content['day'] = parse_potential_timestring(self.day)
+
         if self.start_time is not None:
-            content['start_time'] = parse_potential_timestring(self.start_time)
+            try:
+                time = parse_potential_hour_timestring(self.start_time)
+            except:
+                time = None
+            if time is None:
+                time = content['start_time'] = parse_potential_hour_timestring(f"{self.day}T{self.start_time}")
+            content['start_time'] = time
 
         if self.end_time is not None:
-            content['end_time'] = parse_potential_timestring(self.end_time)
+            try:
+                time = parse_potential_hour_timestring(self.end_time)
+            except:
+                time = None
+            if time is None:
+                time = content['end_time'] = parse_potential_hour_timestring(f"{self.day}T{self.end_time}")
+            content['end_time'] = time
 
         if self.duration is not None:
-            # content['duration'] = parse_potential_timestring(self.duration)
             content['duration'] = timedelta(hours=float(self.duration))
 
         if self.day is not None:

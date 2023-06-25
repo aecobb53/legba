@@ -103,20 +103,55 @@ class TestTimecard(UtilFunctions):
         with open('/home/acobb/git/legba/data/timecard/dev_timesheet_for_use_and_testing.json', 'r') as jf:
             data = json.load(jf)
 
-        x=1
+        # x=1
+        # date_string = "2023-06-2"
+        # data = {
+        #     "2023-06-23": {
+        #         "entries": [
+        #             {
+        #                 "start_time": "6",
+        #                 "shorthand": "general"
+        #             },
+        #             {
+        #                 "end_time": "1500",
+        #                 "shorthand": "general"
+        #             },
+
+        #             {
+        #                 "start_time": "0800",
+        #                 "shorthand": "working"
+        #             },
+        #             {
+        #                 "duration": 1,
+        #                 "shorthand": "meeting"
+        #             },
+        #             {
+        #                 "end_time": "09",
+        #                 "shorthand": "work"
+        #             },
+
+        #             {
+        #                 "end_time": "12:00",
+        #                 "duration": 2,
+        #                 "shorthand": "work"
+        #             },
+        #             {
+        #                 "start_time": "15:00",
+        #                 "duration": 2,
+        #                 "shorthand": "meeting"
+        #             }
+        #         ]
+        #     }
+        # }
 
         timecard = Timecard()
 
         for day, entries in data.items():
             for entry in entries['entries']:
                 entry['day'] = day
-                x=1
                 post_obj = POSTTimecardEntry(**entry)
-                x=1
                 te = post_obj.return_timecard_entry()
-                x=1
                 timecard.add_entry(te)
-        x=1
         dd = timecard.display_data()
         x=1
 

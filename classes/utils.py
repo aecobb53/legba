@@ -1,3 +1,5 @@
+from calendar import month
+import fractions
 import re
 
 from datetime import datetime, timedelta
@@ -131,3 +133,36 @@ def parse_potential_timestring(time_s):
             x=1
     return time
 
+def parse_potential_hour_timestring(time_s):
+    x=1
+    if 'T' in time_s:
+        day, time_s = time_s.split('T')
+    if '.' in time_s:
+        time_s, fractions = time_s.split('.')
+    else:
+        fractions = 0
+    time = parse_potential_timestring(day)
+    time_l = time_s.split(':')
+    time_ll = []
+    for item in time_l:
+        item = str(item)
+        if len(item) > 2:
+            i1 = item[:-2]
+            i2 = item[-2:]
+            time_ll.extend([item[:-2], item[-2:]])
+        else:
+            time_ll.append(item)
+    x=1
+    time_ll.extend(0 for _ in range(3 - len(time_ll)))
+    time = time.replace(
+        hour=int(time_ll[0]),
+        minute=int(time_ll[1]),
+        second=int(time_ll[2]),
+        microsecond=fractions,
+    )
+    return time
+
+def sort_value_for_datetime(obj):
+    obj_str = datetime.strftime(obj, '%Y%m%d%H%M%S')
+    obj_int = int(obj_str)
+    return obj_int

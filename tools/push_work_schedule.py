@@ -138,8 +138,8 @@ breakout = 5
 
 for date, record in data.items():
     x=1
-    if breakout <= 0:
-        break
+    # if breakout <= 0:
+    #     break
     breakout -= 1
     for entry in record['entries']:
         url = f"http://hamster.nax.lol:8201/timecard-entry"
