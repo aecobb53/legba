@@ -277,6 +277,7 @@ class Timecard:
         data = self.data
         for record in data['records']:
             x=1
+            print(f"Record: {record}")
             if record.day_str not in tracking:
                 tracking[record.day_str] = DayOfEntries(day=record.day)
             tracking[record.day_str].records.append(record)
