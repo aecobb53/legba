@@ -193,9 +193,9 @@ class DayOfEntries(BaseModel):
 
         # Calculating Durations
         for record in durations:
-            cd = record.charge_code
             if record.charge_code not in codes:
                 codes[record.charge_code] = 0
+            print(f"RECORD: {record}")
             codes[record.charge_code] += DayOfEntries.calculate_duration_value(record.calculated_duration)
 
         # Calculating Durations from time differences
@@ -313,6 +313,7 @@ class Timecard:
         ordered_tracking = {k: tracking[k] for k in keys_list}
         output = {}
         for day, day_obj in ordered_tracking.items():
+            print(f"Day object: {day_obj}")
             output[day] = day_obj.calculate_details()
         return output
 
