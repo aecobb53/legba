@@ -94,21 +94,17 @@ class TimecardEntry(BaseModel):
     def build(cls, dct):
         duration = None
         if dct.get('duration'):
-            print(dct['duration'])
             try:
                 hours, minutes, seconds = dct['duration'].split(':')
                 duration = timedelta(hours=int(hours), minutes=int(minutes), seconds=int(seconds))
             except Exception as err:
-                print(err)
                 duration = timedelta(float(dct['duration']))
-        print(f"DAY:::: {dct.get('day')}")
         day = parse_potential_timestring(dct.get('day'))
         if not day:
             if dct.get('start_time'):
                 day = parse_potential_timestring(dct['start_time'])
             else:
                 day = parse_potential_timestring(dct['end_time'])
-        print(f"DAY:   {day}")
         content = {
             'identifier': dct.get('id'),
             'update_datetime': dct.get('update_datetime'),
@@ -222,7 +218,6 @@ class Timecard:
 
     def load(self, filepath=None):
         records = []
-        print('laoding record')
         if filepath is None:
             filepath = self.default_file
         try:
@@ -234,22 +229,15 @@ class Timecard:
             except:
                 pass
             timecard_data = {}
-        print(f"TIMECARD_DATA: {timecard_data}")
         for item in timecard_data.get('records', []):
-            print(f"ITEM1: {item}")
             item = json.loads(item)
-            print(f"ITEM2: {item}")
             records.append(TimecardEntry.build(item))
 
         timecard_data['records'] = records
-        print(f"TIMECARD_DATA (again): {timecard_data}")
 
         return timecard_data
 
     def save(self, filepath=None, data=None):
-        print('starting save')
-        print(filepath)
-        print(data)
         # self._data = None
         if filepath is None:
             filepath = self.default_file
@@ -257,13 +245,10 @@ class Timecard:
             data = self.data
         if data is None:
             return
-        print(data)
         records = []
         for item in data.get('records', []):
-            print(f"ITEM: {item}")
             records.append(json.dumps(item.put))
         data['records'] = records
-        print(f"RECORDS: {data['records']}")
         try:
             with open(filepath, 'w') as tf:
                 tf.write(json.dumps(data, indent=4))
@@ -287,17 +272,13 @@ class Timecard:
     def display_data(self):
         tracking = {}
         data = self.data
-        print('display data is being run')
-        print(data)
         for record in data['records']:
             x=1
-            print(f"Record: {record}")
             if record.day_str not in tracking:
                 tracking[record.day_str] = DayOfEntries(day=record.day)
             tracking[record.day_str].records.append(record)
         keys_list = list(tracking.keys())
         keys_list.sort()
-        print(keys_list)
         ordered_tracking = {k: tracking[k] for k in keys_list}
         output = {}
         for day, day_obj in ordered_tracking.items():
