@@ -222,6 +222,7 @@ class Timecard:
 
     def load(self, filepath=None):
         records = []
+        print('laoding record')
         if filepath is None:
             filepath = self.default_file
         try:
@@ -233,8 +234,11 @@ class Timecard:
             except:
                 pass
             timecard_data = {}
+        print(f"TIMECARD_DATA: {timecard_data}")
         for item in timecard_data.get('records', []):
+            print(f"ITEM1: {item}")
             item = json.loads(item)
+            print(f"ITEM2: {item}")
             records.append(TimecardEntry.build(item))
 
         timecard_data['records'] = records
