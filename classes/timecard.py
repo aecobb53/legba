@@ -276,6 +276,7 @@ class Timecard:
         tracking = {}
         data = self.data
         print('display data is being run')
+        print(data)
         for record in data['records']:
             x=1
             print(f"Record: {record}")
