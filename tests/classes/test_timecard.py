@@ -1,5 +1,9 @@
+from importlib.metadata import entry_points
 from sqlite3 import Time
+from time import time
+from turtle import pos
 import pytest
+import json
 from classes.timecard import TimecardEntry, Timecard, POSTTimecardEntry
 from datetime import datetime, timedelta
 
@@ -93,6 +97,27 @@ class TestTimecard(UtilFunctions):
         tc.add_entry(TimecardEntry(day=datetime(2023, 11, 11), duration=timedelta(hours=2), shorthand='meeting'))
         x=1
         charge_codes_per_day = tc.display_data()
+        x=1
+
+    def test_with_data(self):
+        with open('/home/acobb/git/legba/data/timecard/dev_timesheet_for_use_and_testing.json', 'r') as jf:
+            data = json.load(jf)
+
+        x=1
+
+        timecard = Timecard()
+
+        for day, entries in data.items():
+            for entry in entries['entries']:
+                entry['day'] = day
+                x=1
+                post_obj = POSTTimecardEntry(**entry)
+                x=1
+                te = post_obj.return_timecard_entry()
+                x=1
+                timecard.add_entry(te)
+        x=1
+        dd = timecard.display_data()
         x=1
 
 

@@ -192,6 +192,7 @@ class DayOfEntries(BaseModel):
             if duration is None:
                 continue
             codes[charge_code] += DayOfEntries.calculate_duration_value(duration)
+        x=1
         if ShorthandMapping.GENERAL.value in codes:
             try:
                 work_value = codes[ShorthandMapping.GENERAL.value] - codes[ShorthandMapping.MEETING.value]
@@ -281,6 +282,7 @@ class Timecard:
             tracking[record.day_str].records.append(record)
         keys_list = list(tracking.keys())
         keys_list.sort()
+        print(keys_list)
         ordered_tracking = {k: tracking[k] for k in keys_list}
         output = {}
         for day, day_obj in ordered_tracking.items():
