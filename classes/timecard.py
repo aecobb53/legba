@@ -52,6 +52,11 @@ class TimecardEntry(BaseModel):
     def calculated_duration(self):
         if self.duration is not None:
             return self.duration
+        if self.end_time is None or self.start_time is None:
+            print(f"Im about to error out: {self}")
+            print(f"start_time: {self.start_time}")
+            print(f"end_time: {self.end_time}")
+            print(f"duration: {self.duration}")
         return self.end_time - self.start_time
 
     @property
