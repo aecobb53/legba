@@ -86,7 +86,7 @@ class TimecardEntry(BaseModel):
             'start_time': datetime.strftime(self.start_time, datetime_str) if self.start_time is not None else None,
             'end_time': datetime.strftime(self.end_time, datetime_str) if self.end_time is not None else None,
             'duration': duration,
-            'day': datetime.strftime(self.end_time, date_str)
+            'day': datetime.strftime(self.day, date_str)
         }
         return content
 
@@ -242,6 +242,7 @@ class Timecard:
             records.append(TimecardEntry.build(item))
 
         timecard_data['records'] = records
+        print(f"TIMECARD_DATA (again): {timecard_data}")
 
         return timecard_data
 
@@ -249,13 +250,14 @@ class Timecard:
         print('starting save')
         print(filepath)
         print(data)
-        self._data = None
+        # self._data = None
         if filepath is None:
             filepath = self.default_file
         if data is None:
             data = self.data
         if data is None:
             return
+        print(data)
         records = []
         for item in data.get('records', []):
             print(f"ITEM: {item}")
