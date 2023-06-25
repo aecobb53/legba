@@ -250,8 +250,10 @@ class Timecard:
             return
         records = []
         for item in data.get('records', []):
+            print(f"ITEM: {item}")
             records.append(json.dumps(item.put))
         data['records'] = records
+        print(f"RECORDS: {data['records']}")
         try:
             with open(filepath, 'w') as tf:
                 tf.write(json.dumps(data, indent=4))
