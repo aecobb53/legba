@@ -247,6 +247,7 @@ class Timecard:
 
     def save(self, filepath=None, data=None):
         print('starting save')
+        self._data = None
         if filepath is None:
             filepath = self.default_file
         if data is None:
