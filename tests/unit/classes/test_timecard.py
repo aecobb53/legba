@@ -17,7 +17,10 @@ class UtilFunctions:
 
 class TestTimecardEntry(UtilFunctions):
     def test_timecard_entry(self):
-        tce = TimecardEntry()
+        tce = TimecardEntry(
+            duration=timedelta(hours=1, minutes=30),
+            day=datetime(2023, 11, 10),
+        )
         output = tce.put
         rebuilt = TimecardEntry.build(output)
         rebuilt_output = rebuilt.put
@@ -36,7 +39,9 @@ class TestTimecard(UtilFunctions):
         self.clean_timecard_data()
         tc = Timecard()
         tc.save()
-        tce = TimecardEntry()
+        tce = TimecardEntry(
+            day=datetime(2023, 11, 10),
+        )
         tc.add_entry(entry=tce)
         tc.save()
         tc.load()
@@ -54,7 +59,8 @@ class TestTimecard(UtilFunctions):
             # description=,
             'start_time': '2020-01-01',
             # end_time=,
-            'duration': '1.5 hr'
+            'duration': '1.5',
+            'day': '2023-11-10'
         })
         tc.add_entry(initial_entry)
         a = initial_entry.calculated_duration

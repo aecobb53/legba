@@ -1,9 +1,10 @@
-from ast import parse
+# from ast import parse
 import os
+import re
 import json
 from unittest.mock import NonCallableMagicMock
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 from enum import Enum
 from typing import List, Union
 from datetime import datetime, timedelta
@@ -14,6 +15,7 @@ from .utils import parse_potential_timestring, parse_potential_hour_timestring, 
 
 datetime_str = "%Y%m%dT%H%M%S.%fZ"
 date_str = "%Y%m%dZ"
+date_str_long = "%Y-%m-%dZ"
 
 
 class ShorthandMapping(Enum):
@@ -21,7 +23,10 @@ class ShorthandMapping(Enum):
     WORK = 'CHARGE.CODE.WORK'
     WORKING = 'CHARGE.CODE.WORK'
     OVERHEAD = 'CHARGE.CODE.OVERHEAD'
-    GENERAL = 'GENERAL'
+    WORK_G = 'WORK_G'
+    FTO = 'CHARGE.CODE.FTO'
+    HOLIDAY = 'CHARGE.CODE.HOLIDAY'
+    AWAY_G = 'CHARGE.CODE.AWAY_G'
 
 
 class TimecardEntry(BaseModel):
@@ -35,7 +40,7 @@ class TimecardEntry(BaseModel):
     start_time: datetime = None
     end_time: datetime = None
     duration: Union[datetime, timedelta] = None
-    day: datetime = None
+    day: datetime
 
     # Id
     @property
@@ -52,11 +57,6 @@ class TimecardEntry(BaseModel):
     def calculated_duration(self):
         if self.duration is not None:
             return self.duration
-        if self.end_time is None or self.start_time is None:
-            print(f"Im about to error out: {self}")
-            print(f"start_time: {self.start_time}")
-            print(f"end_time: {self.end_time}")
-            print(f"duration: {self.duration}")
         return self.end_time - self.start_time
 
     @property
@@ -69,6 +69,10 @@ class TimecardEntry(BaseModel):
     @property
     def day_str(self):
         return datetime.strftime(self.day, date_str)
+
+    @property
+    def day_str_long(self):
+        return datetime.strftime(self.day, date_str_long)
 
     @property
     def put(self):
@@ -127,6 +131,10 @@ class TimecardEntry(BaseModel):
         obj = cls(**content)
         return obj
 
+    def validate_im_good(self):
+        if self.start_time is None and self.end_time is None and self.duration is None:
+            raise ValueError('A start time, end time, or duration is required')
+
 
 class DayOfEntries(BaseModel):
     day: datetime
@@ -135,6 +143,10 @@ class DayOfEntries(BaseModel):
     @property
     def day_str(self):
         return datetime.strftime(self.day, date_str)
+
+    @property
+    def day_str_long(self):
+        return datetime.strftime(self.day, date_str_long)
 
     @property
     def day_array_value(self):
@@ -200,7 +212,6 @@ class DayOfEntries(BaseModel):
         for record in durations:
             if record.charge_code not in codes:
                 codes[record.charge_code] = 0
-            print(f"RECORD: {record}")
             codes[record.charge_code] += DayOfEntries.calculate_duration_value(record.calculated_duration)
 
         # Calculating Durations from time differences
@@ -226,14 +237,14 @@ class DayOfEntries(BaseModel):
                 end_times.pop(end_index)
             start_index += 1
 
-        if codes.get(ShorthandMapping.GENERAL.value):
-            general_work = codes[ShorthandMapping.GENERAL.value]
+        if codes.get(ShorthandMapping.WORK_G.value):
+            general_work = codes[ShorthandMapping.WORK_G.value]
             general_work -= codes.get(ShorthandMapping.MEETING.value, 0)
             general_work -= codes.get(ShorthandMapping.OVERHEAD.value, 0)
             if ShorthandMapping.WORK.value not in codes:
                 codes[ShorthandMapping.WORK.value] = 0
             codes[ShorthandMapping.WORK.value] += general_work
-            del codes[ShorthandMapping.GENERAL.value]
+            del codes[ShorthandMapping.WORK_G.value]
         return codes
 
 
@@ -305,11 +316,14 @@ class Timecard:
         data['records'].append(entry)
         self.data = data
 
-    def display_data(self):
+    def display_data(self, day=None):
         tracking = {}
         data = self.data
         for record in data['records']:
-            x=1
+            if day is not None:
+                match = re.search(day, record.day_str_long)
+                if not match:
+                    continue
             if record.day_str not in tracking:
                 tracking[record.day_str] = DayOfEntries(day=record.day)
             tracking[record.day_str].records.append(record)
@@ -318,7 +332,6 @@ class Timecard:
         ordered_tracking = {k: tracking[k] for k in keys_list}
         output = {}
         for day, day_obj in ordered_tracking.items():
-            print(f"Day object: {day_obj}")
             output[day] = day_obj.calculate_details()
         return output
 
@@ -334,16 +347,6 @@ class POSTTimecardEntry(BaseModel):
     day: str = None
 
     def return_timecard_entry(self):
-
-        # print(f"charge_code: {self.charge_code}")
-        # print(f"shorthand: {self.shorthand}")
-        # print(f"note: {self.note}")
-        # print(f"description: {self.description}")
-        # print(f"start_time: {self.start_time}")
-        # print(f"end_time: {self.end_time}")
-        # print(f"duration: {self.duration}")
-        # print(f"day: {self.day}")
-
         if self.start_time is None and self.end_time is None and self.day is None:
             raise ValueError('If start and end times are both None, a day is required')
 
@@ -387,8 +390,6 @@ class POSTTimecardEntry(BaseModel):
 
         if self.day is not None:
             content['day'] = parse_potential_timestring(self.day)
-
-        # print(content)
 
         obj = TimecardEntry(**content)
         return obj

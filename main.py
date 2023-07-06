@@ -2,8 +2,8 @@ import os
 import logging
 
 from logging.handlers import RotatingFileHandler
-from logging import FileHandler  # , StreamHandler
-from fastapi import FastAPI, Query, Request
+from logging import FileHandler , StreamHandler
+from fastapi import FastAPI, Query, Request, HTTPException
 from fastapi.responses import HTMLResponse, ORJSONResponse
 from typing import Dict
 
@@ -25,6 +25,11 @@ fh = logging.FileHandler(log_file)
 fh.setLevel(logging.DEBUG)
 fh.setFormatter(formatter)
 logger.addHandler(fh)
+if os.environ.get('STREAM_HANDLER', 'False') == 'True':
+    sh = logging.StreamHandler()
+    sh.setLevel(logging.DEBUG)
+    sh.setFormatter(formatter)
+    logger.addHandler(sh)
 
 app = FastAPI()
 
@@ -72,10 +77,11 @@ async def ifsc_current_rankings_data(requests: Request):
 
 
 @app.get('/timecard')
-async def timecard_get(requests: Request):
+async def timecard_get(requests: Request, day: str = None):
+    logger.debug(f'day: {day}')
     logger.debug('GET on /timecard')
     tc = Timecard()
-    return tc.display_data()
+    return tc.display_data(day=day)
 
 
 @app.put('/timecard')
@@ -103,18 +109,16 @@ async def timecard_post(requests: Request, timecard_data: PUTTimecard):
 @app.post('/timecard-entry')
 async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
     logger.debug('POST on /timecard-entry')
-    # print(timecard_entry)
     try:
         tc = Timecard()
         entry = timecard_entry.return_timecard_entry()
+        entry.validate_im_good()
         tc.add_entry(entry=entry)
         tc.save()
+    except ValueError as err:
+        raise HTTPException(status_code=500, detail=f"{err}")
     except Exception as err:
-        logger.error(f"Internal Exception raised: {err}")
-        return {'message': f"Internal Exception raised: {err}"}
-    # finally:
-    #     x=1
-    # x=1
+        raise HTTPException(status_code=500, detail=f"{err}")
     return entry.put
 
 
