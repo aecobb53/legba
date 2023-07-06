@@ -116,8 +116,10 @@ async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
         tc.add_entry(entry=entry)
         tc.save()
     except ValueError as err:
+        logger.warning(f"{err}")
         raise HTTPException(status_code=500, detail=f"{err}")
     except Exception as err:
+        logger.warning(f"{err}")
         raise HTTPException(status_code=500, detail=f"{err}")
     return entry.put
 
