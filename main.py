@@ -5,6 +5,7 @@ from logging.handlers import RotatingFileHandler
 from logging import FileHandler , StreamHandler
 from fastapi import FastAPI, Query, Request, HTTPException
 from fastapi.responses import HTMLResponse, ORJSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from typing import Dict
 
 from parse_ifsc import search_ifsc_data
@@ -32,6 +33,16 @@ if os.environ.get('STREAM_HANDLER', 'False') == 'True':
     logger.addHandler(sh)
 
 app = FastAPI()
+
+# Setting up CORS and who can access the API
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Root
 @app.get('/')
