@@ -158,7 +158,7 @@ class TestTimecard(UtilFunctions):
                 post_obj = POSTTimecardEntry(**entry)
                 te = post_obj.return_timecard_entry()
                 timecard.add_entry(te)
-        dd = timecard.display_data()
+        dd = timecard.display_data(day='2023-06')
         x=1
 
 
