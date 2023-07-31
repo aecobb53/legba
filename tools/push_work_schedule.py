@@ -43,8 +43,9 @@ def get_charge_code_data(url_base, save_file=True):
             jf.write(json.dumps(resp, indent=4))
     return resp
 
+x=1
 
-if False:
+if True:
     reset_database()
     post_data(url_base='http://hamster.nax.lol:8201', path='data/timecard/dev_timesheet_for_use_and_testing.json')
     resp = get_charge_code_data(url_base='http://hamster.nax.lol:8201')
@@ -53,5 +54,9 @@ else:
     resp = get_charge_code_data(url_base='http://hamster.nax.lol:8201')
     x=1
 
+try:
+    details = resp.json()
+except:
+    pass
 x=1
 
