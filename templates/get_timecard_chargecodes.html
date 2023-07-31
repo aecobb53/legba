@@ -47,16 +47,24 @@ function populate_table(date, item) {
     x.innerHTML = date.slice(0,4)  + ' - ' + date.slice(4,6)  + ' - ' + date.slice(6,8);
     // x.innerHTML = date;
 
-    // Working
+
+    // Total
     var x = row.insertCell(1);
+    total_hours = 0;
+    total_hours += item['CHARGE.CODE.WORK'] || 0;
+    total_hours += item['CHARGE.CODE.MEETING'] || 0;
+    x.innerHTML = total_hours || '-';
+
+    // Working
+    var x = row.insertCell(2);
     x.innerHTML = item['CHARGE.CODE.WORK'] || '-';
 
     // Meeting
-    var x = row.insertCell(2);
+    var x = row.insertCell(3);
     x.innerHTML = item['CHARGE.CODE.MEETING'] || '-';
 
     // FTO
-    var x = row.insertCell(3);
+    var x = row.insertCell(4);
     x.innerHTML = item['CHARGE.CODE.FTO'] || '-';
 
 };
@@ -129,6 +137,7 @@ function myFunction3() {
     <table id="charge-code-table"; class="charge-code-table">
         <thead>
             <th scope="col">Date</th>
+            <th scope="col">Total</th>
             <th scope="col">Working</th>
             <th scope="col">Meeting</th>
             <th scope="col">FTO</th>

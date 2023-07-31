@@ -232,9 +232,8 @@ class DayOfEntries(BaseModel):
                     if start_charge_code not in codes:
                         codes[start_charge_code] = 0
                     codes[start_charge_code] += DayOfEntries.calculate_duration_value(obj.end_time - start_obj.start_time)
-
-            if end_index is not None:
-                end_times.pop(end_index)
+                    end_times.pop(end_index)
+                    break
             start_index += 1
 
         if codes.get(ShorthandMapping.WORK_G.value):

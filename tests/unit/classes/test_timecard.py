@@ -35,6 +35,9 @@ class TestTimecardEntry(UtilFunctions):
         assert rebuilt_output['end_time'] == output['end_time']
 
 class TestTimecard(UtilFunctions):
+    def setUp(self):
+        self.clean_timecard_data()
+
     def test_timecard_entry(self):
         self.clean_timecard_data()
         tc = Timecard()
@@ -161,4 +164,20 @@ class TestTimecard(UtilFunctions):
         dd = timecard.display_data(day='2023-06')
         x=1
 
+    def test_find_wrong_data(self):
+        with open('/home/acobb/git/legba/data/timecard/dev_timesheet_for_use_and_testing.json', 'r') as jf:
+            data = json.load(jf)
 
+        timecard = Timecard()
+
+        for day, entries in data.items():
+            if day != '2023-06-16':
+                continue
+            x=1
+            for entry in entries['entries']:
+                entry['day'] = day
+                post_obj = POSTTimecardEntry(**entry)
+                te = post_obj.return_timecard_entry()
+                timecard.add_entry(te)
+        dd = timecard.display_data(day='2023-06-16')
+        x=1
