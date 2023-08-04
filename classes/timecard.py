@@ -317,6 +317,8 @@ class Timecard:
 
     def update_entry(self, entry_id, entry):
         for entry in self.data['records']:
+            print(entry)
+            break
             if entry.id == entry_id:
                 entry.update(entry)
                 break
