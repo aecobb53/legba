@@ -319,7 +319,9 @@ class Timecard:
         for entry in self.data['records']:
             if entry.id == entry_id:
                 print('RECORD FOUND')
-                entry = entry
+                print(entry.duration)
+                entry = updated_entry
+                print(entry.duration)
                 break
         print('done checking')
 
