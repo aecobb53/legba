@@ -315,6 +315,12 @@ class Timecard:
         data['records'].append(entry)
         self.data = data
 
+    def update_entry(self, entry_id, entry):
+        for entry in self.data['records']:
+            if entry.id == entry_id:
+                entry.update(entry)
+                break
+
     def display_data(self, day=None):
         tracking = {}
         data = self.data
