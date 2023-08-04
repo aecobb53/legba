@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+async function get_home() {
+    console.log('About to get data from hamster timecard');
+    console.log(document.getElementById("date_search").value);
+    const day = new URLSearchParams({ day: document.getElementById("date_search").value });
+
+    const response = await fetch(`http://hamster.nax.lol:8201/timecard?${day}`, {
+        method: 'GET',
+    });
+    const chargeCodesByDate = await response.json();
+    console.log('Hit home endpoint');
+    console.log(chargeCodesByDate);
+
+    const dates = Object.keys(chargeCodesByDate)
+    clear_table();
+    dates.forEach((val) => populate_table(val, chargeCodesByDate[val]));
+}
+async function post_record() {
+    var post_body = {};
+
+    const start_time = document.getElementById("start_time").value;
+    if (start_time !== '') {
+        post_body['start_time'] = start_time;
+    }
+    const end_time = document.getElementById("end_time").value;
+    if (end_time !== '') {
+        post_body['end_time'] = end_time;
+    }
+    const duration = document.getElementById("duration").value;
+    if (duration !== '') {
+        post_body['duration'] = duration;
+    }
+    const day = document.getElementById("day").value;
+    if (day !== '') {
+        post_body['day'] = day;
+    }
+    const shorthand = document.getElementById("shorthand").value;
+    if (shorthand !== '') {
+        post_body['shorthand'] = shorthand;
+    }
+    const charge_code = document.getElementById("charge_code").value;
+    if (charge_code !== '') {
+        post_body['charge_code'] = charge_code;
+    }
+    const note = document.getElementById("note").value;
+    if (note !== '') {
+        post_body['note'] = note;
+    }
+    const description = document.getElementById("description").value;
+    if (description !== '') {
+        post_body['description'] = description;
+    }
+
+    console.log(post_body);
+
+    const response = await fetch('http://hamster.nax.lol:8201/timecard-entry', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(post_body)
+    })
+
+    created_resource = await response.json()
+    console.log(created_resource)
+
+    document.getElementById("results_id").value = created_resource['id']
+    document.getElementById("results_charge_code").value = created_resource['charge_code']
+    document.getElementById("results_shorthand").value = created_resource['shorthand']
+    document.getElementById("results_note").value = created_resource['note']
+    document.getElementById("results_description").value = created_resource['description']
+    document.getElementById("results_start_time").value = created_resource['start_time']
+    document.getElementById("results_end_time").value = created_resource['end_time']
+    document.getElementById("results_duration").value = created_resource['duration']
+    document.getElementById("results_day").value = created_resource['day']
+
+};
+
+
+async function put_record() {
+    var post_body = {};
+
+    const start_time = document.getElementById("results_start_time").value;
+    if (start_time !== '') {
+        post_body['start_time'] = start_time;
+    }
+    const end_time = document.getElementById("results_end_time").value;
+    if (end_time !== '') {
+        post_body['end_time'] = end_time;
+    }
+    const duration = document.getElementById("results_duration").value;
+    if (duration !== '') {
+        post_body['duration'] = duration;
+    }
+    const day = document.getElementById("results_day").value;
+    if (day !== '') {
+        post_body['day'] = day;
+    }
+    const shorthand = document.getElementById("results_shorthand").value;
+    if (shorthand !== '') {
+        post_body['shorthand'] = shorthand;
+    }
+    const charge_code = document.getElementById("results_charge_code").value;
+    if (charge_code !== '') {
+        post_body['charge_code'] = charge_code;
+    }
+    const note = document.getElementById("results_note").value;
+    if (note !== '') {
+        post_body['note'] = note;
+    }
+    const description = document.getElementById("results_description").value;
+    if (description !== '') {
+        post_body['description'] = description;
+    }
+
+    console.log(post_body);
+
+    const response = await fetch('http://hamster.nax.lol:8201/timecard-entry', {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(post_body)
+    })
+//    .then(response => response.json())
+//    .then(response => console.log(JSON.stringify(response)))
+    created_resource = await response.json()
+    console.log(created_resource)
+    // console.log(JSON.stringify(response))
+
+    // <label for="results_id">id:</label>
+    // <label for="results_charge_code">charge_code:</label>
+    // <label for="results_shorthand">shorthand:</label>
+    // <label for="results_note">note:</label>
+    // <label for="results_description">description:</label>
+    // <label for="results_start_time">start_time:</label>
+    // <label for="results_end_time">end_time:</label>
+    // <label for="results_duration">duration:</label>
+    // <label for="results_day">day:</label>
+
+    document.getElementById("results_id").value = created_resource['id']
+    document.getElementById("results_charge_code").value = created_resource['charge_code']
+    document.getElementById("results_shorthand").value = created_resource['shorthand']
+    document.getElementById("results_note").value = created_resource['note']
+    document.getElementById("results_description").value = created_resource['description']
+    document.getElementById("results_start_time").value = created_resource['start_time']
+    document.getElementById("results_end_time").value = created_resource['end_time']
+    document.getElementById("results_duration").value = created_resource['duration']
+    document.getElementById("results_day").value = created_resource['day']
+
+};
+
+// <meta http-equiv="refresh" content="delay_time; URL=new_website_url" />
+
+
+</script>
+
+
+</head>
+<body>
+<h2>Post timecard entry</h2>
+<div>
+    <!-- <label for="start">Start date:</label>
+    <input type="text" id="date_search" name="fname" value="2023-"> -->
+
+    <label for="start_time">Start Time:</label>
+    <input type="text" id="start_time" name="start_time">
+
+    <label for="end_time">End Time:</label>
+    <input type="text" id="end_time" name="end_time">
+
+    <label for="duration">Duration:</label>
+    <input type="text" id="duration" name="duration">
+
+    <label for="day">Day:</label>
+    <input type="date" id="day" name="day">
+
+    <br>
+
+    <label for="shorthand">Shorthand for charge code:</label>
+    <input type="text" id="shorthand" name="shorthand">
+
+    <label for="charge_code">Charge Code:</label>
+    <input type="text" id="charge_code" name="charge_code">
+
+    <br>
+
+    <label for="note">Note:</label>
+    <input type="text" id="note" name="note">
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description">
+
+</div>
+<button type="button" onclick="post_record()">Post time</button>
+
+<!-- <div style="display: none;"> -->
+<div style="display: block;">
+    <h3>Timecard Entry</h3>
+    <label for="results_id">ID:</label>
+    <input type="text" id="results_id" name="results_id">
+    <br>
+    <label for="results_charge_code">Charge Code:</label>
+    <input type="text" id="results_charge_code" name="results_charge_code">
+    <br>
+    <label for="results_shorthand">Charge Code Shorthand:</label>
+    <input type="text" id="results_shorthand" name="results_shorthand">
+    <br>
+    <label for="results_note">Note:</label>
+    <input type="text" id="results_note" name="results_note">
+    <br>
+    <label for="results_description">Description:</label>
+    <input type="text" id="results_description" name="results_description">
+    <br>
+    <label for="results_start_time">Start Time:</label>
+    <input type="text" id="results_start_time" name="results_start_time">
+    <br>
+    <label for="results_end_time">End Time:</label>
+    <input type="text" id="results_end_time" name="results_end_time">
+    <br>
+    <label for="results_duration">Duration:</label>
+    <input type="text" id="results_duration" name="results_duration">
+    <br>
+    <label for="results_day">day:</label>
+    <input type="text" id="results_day" name="results_day">
+    <br>
+    <button type="button" onclick="put_record()">Update record</button>
+</div>
+
+
+
+<style>
+</style>
+
+</body>
+</html>

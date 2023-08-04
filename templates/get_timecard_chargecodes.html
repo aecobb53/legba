@@ -4,16 +4,9 @@
 <script>
 async function get_home() {
     console.log('About to get data from hamster timecard');
-    // const response = await fetch('https://httpbin.org/get');
-    // const response = fetch('http://hamster.nax.lol:8201/');
-
-    // const day = new URLSearchParams({ day: '2023-06' });
-    // console.log(document.getElementById("start").value);
-    // console.log(document.getElementById("stop").value);
     console.log(document.getElementById("date_search").value);
     const day = new URLSearchParams({ day: document.getElementById("date_search").value });
 
-    // const response = await fetch(`http://hamster.nax.lol:8201/timecard?${date_string}`, {
     const response = await fetch(`http://hamster.nax.lol:8201/timecard?${day}`, {
         method: 'GET',
     });
@@ -21,32 +14,20 @@ async function get_home() {
     console.log('Hit home endpoint');
     console.log(chargeCodesByDate);
 
-    // for (const key in chargeCodesByDate) {
-    //     if (chargeCodesByDate.hasOwnProperty(key)) {
-    //         console.log(`${key}: ${chargeCodesByDate[key]}`);
-    //     }
-    // }
     const dates = Object.keys(chargeCodesByDate)
-    // console.log(dates);
-    // console.log(dates[0]);
-    // dates.forEach((val) => console.log(val));
-    // dates.forEach((val) => console.log(chargeCodesByDate[val]));
+    clear_table();
     dates.forEach((val) => populate_table(val, chargeCodesByDate[val]));
-
-    // populate_table(chargeCodesByDate)
-
+}
+function clear_table() {
+    console.log("Clearing the charge-code-table table");
+    document.getElementById("charge-code-table").getElementsByTagName('tbody')[0].innerHTML = "";
 }
 function populate_table(date, item) {
-    // console.log('Adding item to table');
-    // console.log(date);
-    // console.log(item);
-
-    var row = document.getElementById("charge-code-table").insertRow(-1);
+    var tbodyRef = document.getElementById("charge-code-table").getElementsByTagName('tbody')[0];
+    var row = tbodyRef.insertRow();
 
     var x = row.insertCell(0);
     x.innerHTML = date.slice(0,4)  + ' - ' + date.slice(4,6)  + ' - ' + date.slice(6,8);
-    // x.innerHTML = date;
-
 
     // Total
     var x = row.insertCell(1);
@@ -68,50 +49,6 @@ function populate_table(date, item) {
     x.innerHTML = item['CHARGE.CODE.FTO'] || '-';
 
 };
-function myFunction() {
-  document.getElementById("demo").innerHTML = "Paragraph changed.";
-}
-async function myFunction2() {
-    // const userAction = async () => {
-    //     const response = await fetch('https://httpbin.org/get');
-    //     const myJson = await response.json(); //extract JSON from the http response
-    //     // do something with myJson
-    // };
-    const response = await fetch('http://hamster.nax.lol:8201/timecard');
-    const myJson = await response.json(); //extract JSON from the http response
-
-    console.log("Hello world!");
-    console.log(myJson);
-    console.log(myJson['headers']);
-    // console.log(myJson.keys(object1));
-
-    // fetch('https://httpbin.org/post', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({ "id": 78912 })
-    // })
-    // .then(response => response.json())
-    // .then(response => console.log(JSON.stringify(response)))
-
-    // const response2 = await fetch('https://httpbin.org/post', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({ "id": 78912 })
-    // })
-    // .then(response2 => response2.json())
-    // // .then(response => console.log(JSON.stringify(response)))
-    // console.log(response2)
-
-}
-function myFunction3() {
-
-}
 </script>
 
 
@@ -121,16 +58,12 @@ function myFunction3() {
 
 <p id="demo">A Paragraph</p>
 <button type="button" onclick="get_home()">GET HOME</button>
-<button type="button" onclick="myFunction()">Try it</button>
-<button type="button" onclick="myFunction2()">Other Func</button>
 
 <div>
     <label for="start">Start date:</label>
 
     <input type="text" id="date_search" name="fname" value="2023-">
 
-    <!-- <input type="date" id="start" name="date-start" value="2023-06-01" min="2023-01-01" max="2040-01-01"> -->
-    <!-- <input type="date" id="stop" name="date-end" value="2023-08-01" min="2023-01-01" max="2040-01-01"> -->
 </div>
 
 <div id="charge-code"; class="charge-code-div">
@@ -142,6 +75,7 @@ function myFunction3() {
             <th scope="col">Meeting</th>
             <th scope="col">FTO</th>
         </thead>
+        <tbody></tbody>
     </table>
 </div>
 

@@ -134,4 +134,21 @@ async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
         raise HTTPException(status_code=500, detail=f"{err}")
     return entry.put
 
+@app.put('/timecard-entry/{recordId}')
+async def timecard_post(requests: Request, recordId: str, timecard_entry: POSTTimecardEntry):
+    logger.debug('PUT on /timecard-entry')
+    logger.debug('I STILL NEED TO WRITE PUT LOGIC')
+    try:
+        tc = Timecard()
+        entry = timecard_entry.return_timecard_entry()
+        entry.validate_im_good()
+        tc.add_entry(entry=entry)
+        tc.save()
+    except ValueError as err:
+        logger.warning(f"{err}")
+        raise HTTPException(status_code=500, detail=f"{err}")
+    except Exception as err:
+        logger.warning(f"{err}")
+        raise HTTPException(status_code=500, detail=f"{err}")
+    return entry.put
 

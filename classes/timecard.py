@@ -387,7 +387,9 @@ class POSTTimecardEntry(BaseModel):
         if self.duration is not None:
             content['duration'] = timedelta(hours=float(self.duration))
 
-        if self.day is not None:
+        if self.day is None:
+            # if self.start_time is not None:
+            #     time = 
             content['day'] = parse_potential_timestring(self.day)
 
         obj = TimecardEntry(**content)
