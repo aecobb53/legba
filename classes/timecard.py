@@ -317,11 +317,11 @@ class Timecard:
 
     def update_entry(self, entry_id, entry):
         for entry in self.data['records']:
-            print(entry)
-            break
             if entry.id == entry_id:
+                print('RECORD FOUND')
                 entry.update(entry)
                 break
+        print('done checking')
 
     def display_data(self, day=None):
         tracking = {}
