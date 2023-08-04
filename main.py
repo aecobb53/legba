@@ -142,7 +142,7 @@ async def timecard_put(requests: Request, entry_id: str, timecard_entry: POSTTim
         tc = Timecard()
         entry = timecard_entry.return_timecard_entry()
         entry.validate_im_good()
-        tc.update_entry(entry_id=entry_id, entry=entry)
+        tc.update_entry(entry_id=entry_id, updated_entry=entry)
         tc.save()
     except ValueError as err:
         logger.warning(f"{err}")

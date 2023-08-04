@@ -315,11 +315,11 @@ class Timecard:
         data['records'].append(entry)
         self.data = data
 
-    def update_entry(self, entry_id, entry):
+    def update_entry(self, entry_id, updated_entry):
         for entry in self.data['records']:
             if entry.id == entry_id:
                 print('RECORD FOUND')
-                entry.update(entry)
+                entry = entry
                 break
         print('done checking')
 
