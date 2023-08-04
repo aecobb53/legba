@@ -134,8 +134,8 @@ async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
         raise HTTPException(status_code=500, detail=f"{err}")
     return entry.put
 
-@app.put('/timecard-entry/{recordId}')
-async def timecard_post(requests: Request, recordId: str, timecard_entry: POSTTimecardEntry):
+@app.put('/timecard-entry')
+async def timecard_put(requests: Request, timecard_entry: POSTTimecardEntry):
     logger.debug('PUT on /timecard-entry')
     logger.debug('I STILL NEED TO WRITE PUT LOGIC')
     try:

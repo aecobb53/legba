@@ -119,7 +119,8 @@ async function put_record() {
 
     console.log(post_body);
 
-    const response = await fetch('http://hamster.nax.lol:8201/timecard-entry', {
+    record_id = document.getElementById("results_id").value;
+    const response = await fetch(`http://hamster.nax.lol:8201/timecard-entry/${record_id}`, {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
