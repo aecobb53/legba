@@ -1,4 +1,5 @@
 # from ast import parse
+import enum
 import os
 import re
 import json
@@ -316,11 +317,12 @@ class Timecard:
         self.data = data
 
     def update_entry(self, entry_id, updated_entry):
-        for entry in self.data['records']:
+        for index, entry in enumerate(self.data['records']):
             if entry.id == entry_id:
                 print('RECORD FOUND')
+                print(entry.id)
                 print(entry.duration)
-                entry = updated_entry
+                self.data['records'][index] = updated_entry
                 print(entry.duration)
                 break
         print('done checking')
