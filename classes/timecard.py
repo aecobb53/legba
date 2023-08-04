@@ -387,7 +387,7 @@ class POSTTimecardEntry(BaseModel):
         if self.duration is not None:
             if len(self.duration.split(':')) == 3:
                 h, m, s = self.duration.split(':')
-                duration = h*3600 + m*60 + s
+                duration = int(h)*3600 + int(m)*60 + int(s)
                 content['duration'] = timedelta(seconds=duration)
             else:
                 content['duration'] = timedelta(hours=float(self.duration))
