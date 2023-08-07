@@ -135,6 +135,10 @@ class TimecardEntry(BaseModel):
     def validate_im_good(self):
         if self.start_time is None and self.end_time is None and self.duration is None:
             raise ValueError('A start time, end time, or duration is required')
+        if self.day is None:
+            raise ValueError('A day is required')
+        if self.shorthand is None and self.charge_code is None:
+            raise ValueError('A charge code or shorthand is required')
 
 
 class DayOfEntries(BaseModel):
