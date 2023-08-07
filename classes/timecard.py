@@ -319,13 +319,8 @@ class Timecard:
     def update_entry(self, entry_id, updated_entry):
         for index, entry in enumerate(self.data['records']):
             if entry.id == entry_id:
-                print('RECORD FOUND')
-                print(entry.id)
-                print(entry.duration)
                 self.data['records'][index] = updated_entry
-                print(entry.duration)
                 break
-        print('done checking')
 
     def display_data(self, day=None):
         tracking = {}

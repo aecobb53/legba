@@ -95,6 +95,14 @@ async def timecard_get(requests: Request, day: str = None):
     return tc.display_data(day=day)
 
 
+@app.get('/html/timecard')
+async def timecard_get(requests: Request):
+    logger.debug('GET on /html/timecard')
+    with open('templates/get_timecard_chargecodes.html', 'r') as hf:
+        html_content = hf.read()
+    return HTMLResponse(content=html_content, status_code=200)
+
+
 @app.put('/timecard')
 async def timecard_put(requests: Request, timecard_data: PUTTimecard):
     logger.debug('PUT on /timecard')
@@ -137,7 +145,6 @@ async def timecard_post(requests: Request, timecard_entry: POSTTimecardEntry):
 @app.put('/timecard-entry/{entry_id}')
 async def timecard_put(requests: Request, entry_id: str, timecard_entry: POSTTimecardEntry):
     logger.debug('PUT on /timecard-entry')
-    logger.debug('I STILL NEED TO WRITE PUT LOGIC')
     try:
         tc = Timecard()
         entry = timecard_entry.return_timecard_entry()

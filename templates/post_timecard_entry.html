@@ -65,18 +65,19 @@ async function post_record() {
         body: JSON.stringify(post_body)
     })
 
-    created_resource = await response.json()
-    console.log(created_resource)
+    created_resource = await response.json();
+    console.log(created_resource);
 
-    document.getElementById("results_id").value = created_resource['id']
-    document.getElementById("results_charge_code").value = created_resource['charge_code']
-    document.getElementById("results_shorthand").value = created_resource['shorthand']
-    document.getElementById("results_note").value = created_resource['note']
-    document.getElementById("results_description").value = created_resource['description']
-    document.getElementById("results_start_time").value = created_resource['start_time']
-    document.getElementById("results_end_time").value = created_resource['end_time']
-    document.getElementById("results_duration").value = created_resource['duration']
-    document.getElementById("results_day").value = created_resource['day']
+    document.getElementById("timecard_results").style.display = 'block';
+    document.getElementById("results_id").value = created_resource['id'];
+    document.getElementById("results_charge_code").value = created_resource['charge_code'];
+    document.getElementById("results_shorthand").value = created_resource['shorthand'];
+    document.getElementById("results_note").value = created_resource['note'];
+    document.getElementById("results_description").value = created_resource['description'];
+    document.getElementById("results_start_time").value = created_resource['start_time'];
+    document.getElementById("results_end_time").value = created_resource['end_time'];
+    document.getElementById("results_duration").value = created_resource['duration'];
+    document.getElementById("results_day").value = created_resource['day'];
 
 };
 
@@ -128,31 +129,19 @@ async function put_record() {
         },
         body: JSON.stringify(post_body)
     })
-//    .then(response => response.json())
-//    .then(response => console.log(JSON.stringify(response)))
-    created_resource = await response.json()
-    console.log(created_resource)
-    // console.log(JSON.stringify(response))
+    created_resource = await response.json();
+    console.log(created_resource);
 
-    // <label for="results_id">id:</label>
-    // <label for="results_charge_code">charge_code:</label>
-    // <label for="results_shorthand">shorthand:</label>
-    // <label for="results_note">note:</label>
-    // <label for="results_description">description:</label>
-    // <label for="results_start_time">start_time:</label>
-    // <label for="results_end_time">end_time:</label>
-    // <label for="results_duration">duration:</label>
-    // <label for="results_day">day:</label>
-
-    document.getElementById("results_id").value = created_resource['id']
-    document.getElementById("results_charge_code").value = created_resource['charge_code']
-    document.getElementById("results_shorthand").value = created_resource['shorthand']
-    document.getElementById("results_note").value = created_resource['note']
-    document.getElementById("results_description").value = created_resource['description']
-    document.getElementById("results_start_time").value = created_resource['start_time']
-    document.getElementById("results_end_time").value = created_resource['end_time']
-    document.getElementById("results_duration").value = created_resource['duration']
-    document.getElementById("results_day").value = created_resource['day']
+    document.getElementById("timecard_results").style.display = 'block';
+    document.getElementById("results_id").value = created_resource['id'];
+    document.getElementById("results_charge_code").value = created_resource['charge_code'];
+    document.getElementById("results_shorthand").value = created_resource['shorthand'];
+    document.getElementById("results_note").value = created_resource['note'];
+    document.getElementById("results_description").value = created_resource['description'];
+    document.getElementById("results_start_time").value = created_resource['start_time'];
+    document.getElementById("results_end_time").value = created_resource['end_time'];
+    document.getElementById("results_duration").value = created_resource['duration'];
+    document.getElementById("results_day").value = created_resource['day'];
 
 };
 
@@ -200,8 +189,8 @@ async function put_record() {
 </div>
 <button type="button" onclick="post_record()">Post time</button>
 
-<!-- <div style="display: none;"> -->
-<div style="display: block;">
+<div id="timecard_results" style="display: none;">
+<!-- <div id="timecard_results"  style="display: block;"> -->
     <h3>Timecard Entry</h3>
     <label for="results_id">ID:</label>
     <input type="text" id="results_id" name="results_id">
@@ -233,6 +222,38 @@ async function put_record() {
     <button type="button" onclick="put_record()">Update record</button>
 </div>
 
+<div id="timecard_results" style="display: none;">
+<!-- <div id="timecard_results"  style="display: block;"> -->
+    <h3>Timecard Entry</h3>
+    <label for="results_id">ID:</label>
+    <input type="text" id="results_id" name="results_id">
+    <br>
+    <label for="results_charge_code">Charge Code:</label>
+    <input type="text" id="results_charge_code" name="results_charge_code">
+    <br>
+    <label for="results_shorthand">Charge Code Shorthand:</label>
+    <input type="text" id="results_shorthand" name="results_shorthand">
+    <br>
+    <label for="results_note">Note:</label>
+    <input type="text" id="results_note" name="results_note">
+    <br>
+    <label for="results_description">Description:</label>
+    <input type="text" id="results_description" name="results_description">
+    <br>
+    <label for="results_start_time">Start Time:</label>
+    <input type="text" id="results_start_time" name="results_start_time">
+    <br>
+    <label for="results_end_time">End Time:</label>
+    <input type="text" id="results_end_time" name="results_end_time">
+    <br>
+    <label for="results_duration">Duration:</label>
+    <input type="text" id="results_duration" name="results_duration">
+    <br>
+    <label for="results_day">day:</label>
+    <input type="text" id="results_day" name="results_day">
+    <br>
+    <button type="button" onclick="put_record()">Update record</button>
+</div>
 
 
 <style>
