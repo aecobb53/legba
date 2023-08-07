@@ -242,6 +242,8 @@ class DayOfEntries(BaseModel):
                 print(f"start_index: {start_index}")
                 print(f"end_index: {end_index}")
                 print(f"start_obj: {start_obj}")
+                print(f"obj: {obj}")
+                print(f"obj_dct: {obj.__dict__}")
                 raise err
 
         if codes.get(ShorthandMapping.WORK_G.value):
