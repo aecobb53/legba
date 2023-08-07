@@ -159,3 +159,10 @@ async def timecard_put(requests: Request, entry_id: str, timecard_entry: POSTTim
         raise HTTPException(status_code=500, detail=f"{err}")
     return entry.put
 
+@app.get('/html/timecard-entry')
+async def timecard_get(requests: Request):
+    logger.debug('GET on /html/timecard-entry')
+    with open('templates/post_timecard_entry.html', 'r') as hf:
+        html_content = hf.read()
+    return HTMLResponse(content=html_content, status_code=200)
+
