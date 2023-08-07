@@ -218,24 +218,31 @@ class DayOfEntries(BaseModel):
         # Calculating Durations from time differences
         start_index = 0
         while start_index < len(start_times):
-            start_obj = start_times[start_index]
-            start_charge_code = start_obj.charge_code
-            if start_charge_code is None:
-                start_charge_code = getattr(ShorthandMapping, start_obj.shorthand.upper()).value
+            try:
+                start_obj = start_times[start_index]
+                start_charge_code = start_obj.charge_code
+                if start_charge_code is None:
+                    start_charge_code = getattr(ShorthandMapping, start_obj.shorthand.upper()).value
 
-            end_index = None
-            for end_index, obj in enumerate(end_times):
-                end_charge_code = obj.charge_code
-                if end_charge_code is None:
-                    end_charge_code = getattr(ShorthandMapping, obj.shorthand.upper()).value
+                end_index = None
+                for end_index, obj in enumerate(end_times):
+                    end_charge_code = obj.charge_code
+                    if end_charge_code is None:
+                        end_charge_code = getattr(ShorthandMapping, obj.shorthand.upper()).value
 
-                if start_charge_code == end_charge_code:
-                    if start_charge_code not in codes:
-                        codes[start_charge_code] = 0
-                    codes[start_charge_code] += DayOfEntries.calculate_duration_value(obj.end_time - start_obj.start_time)
-                    end_times.pop(end_index)
-                    break
-            start_index += 1
+                    if start_charge_code == end_charge_code:
+                        if start_charge_code not in codes:
+                            codes[start_charge_code] = 0
+                        codes[start_charge_code] += DayOfEntries.calculate_duration_value(obj.end_time - start_obj.start_time)
+                        end_times.pop(end_index)
+                        break
+                start_index += 1
+            except Exception as err:
+                print('Issue with this record')
+                print(f"start_index: {start_index}")
+                print(f"end_index: {end_index}")
+                print(f"start_obj: {start_obj}")
+                raise err
 
         if codes.get(ShorthandMapping.WORK_G.value):
             general_work = codes[ShorthandMapping.WORK_G.value]
