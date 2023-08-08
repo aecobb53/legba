@@ -6,6 +6,7 @@ import requests
 from datetime import datetime, timedelta
 
 def reset_database():
+    return
     payload = {'records': []}
     response = requests.post('http://hamster.nax.lol:8201/timecard-set', json=payload)
     return response.json()

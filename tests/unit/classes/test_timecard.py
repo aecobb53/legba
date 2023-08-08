@@ -2,9 +2,10 @@ from importlib.metadata import entry_points
 from sqlite3 import Time
 from time import time
 from turtle import pos
+from unittest import result
 import pytest
 import json
-from classes.timecard import TimecardEntry, Timecard, POSTTimecardEntry
+from classes.timecard import TimecardEntry, Timecard, POSTTimecardEntry, ShorthandMapping
 from datetime import datetime, timedelta
 
 
@@ -180,4 +181,13 @@ class TestTimecard(UtilFunctions):
                 te = post_obj.return_timecard_entry()
                 timecard.add_entry(te)
         dd = timecard.display_data(day='2023-06-16')
+        x=1
+
+    def test_return(self):
+        # results = [e.value for e in ShorthandMapping]
+        # x=1
+        # for i in results:
+        #     a = ShorthandMapping(i)
+        #     b = ShorthandMapping(i).name
+        e = {k: getattr(ShorthandMapping, k).value for k in [ShorthandMapping(e).name for e in ShorthandMapping]}
         x=1

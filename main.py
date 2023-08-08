@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Dict
 
 from parse_ifsc import search_ifsc_data
-from classes.timecard import Timecard, POSTTimecardEntry, PUTTimecard
+from classes.timecard import Timecard, POSTTimecardEntry, PUTTimecard, ShorthandMapping
 
 appname = 'legba'
 
@@ -165,4 +165,10 @@ async def timecard_get(requests: Request):
     with open('templates/post_timecard_entry.html', 'r') as hf:
         html_content = hf.read()
     return HTMLResponse(content=html_content, status_code=200)
+
+@app.get('/html/charge-codes')
+async def timecard_get(requests: Request):
+    logger.debug('GET on /html/charge-codes')
+    charge_code_dict = {k: getattr(ShorthandMapping, k).value for k in [ShorthandMapping(e).name for e in ShorthandMapping]}
+    return charge_code_dict
 
