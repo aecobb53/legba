@@ -28,6 +28,7 @@ class ShorthandMapping(Enum):
     FTO = 'CHARGE.CODE.FTO'
     HOLIDAY = 'CHARGE.CODE.HOLIDAY'
     AWAY_G = 'CHARGE.CODE.AWAY_G'
+    AWAY = 'CHARGE.CODE.AWAY'
 
 
 class TimecardEntry(BaseModel):
@@ -258,6 +259,14 @@ class DayOfEntries(BaseModel):
                 codes[ShorthandMapping.WORK.value] = 0
             codes[ShorthandMapping.WORK.value] += general_work
             del codes[ShorthandMapping.WORK_G.value]
+
+        if codes.get(ShorthandMapping.AWAY_G.value):
+            general_away = codes[ShorthandMapping.AWAY_G.value]
+            general_away -= codes.get(ShorthandMapping.FTO.value, 0)
+            general_away -= codes.get(ShorthandMapping.HOLIDAY.value, 0)
+            codes[ShorthandMapping.WORK.value] -= general_away
+            codes[ShorthandMapping.AWAY.value] = general_away
+            del codes[ShorthandMapping.AWAY_G.value]
         return codes
 
 

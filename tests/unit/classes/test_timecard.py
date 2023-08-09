@@ -172,7 +172,7 @@ class TestTimecard(UtilFunctions):
         timecard = Timecard()
 
         for day, entries in data.items():
-            if day != '2023-06-16':
+            if day != '2023-08-08':
                 continue
             x=1
             for entry in entries['entries']:
@@ -180,7 +180,7 @@ class TestTimecard(UtilFunctions):
                 post_obj = POSTTimecardEntry(**entry)
                 te = post_obj.return_timecard_entry()
                 timecard.add_entry(te)
-        dd = timecard.display_data(day='2023-06-16')
+        dd = timecard.display_data(day='2023-')
         x=1
 
     # def test_return(self):
