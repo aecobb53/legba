@@ -145,24 +145,11 @@ async function put_record() {
 
 };
 
-function onLoad() {
-    console.log('onLoad()');
-    const response = fetch(`http://hamster.nax.lol:8201/html/charge-codes`, {
-        method: 'GET',
-    });
-    const chargeCodesByDate = response.json();
-    console.log('Hit home endpoint');
-    console.log(chargeCodesByDate);
-}
-
-// <meta http-equiv="refresh" content="delay_time; URL=new_website_url" />
-
-
 </script>
 
 
 </head>
-<body onload="onLoad();">
+<body>
 <h2>Post timecard entry</h2>
 <div style="display: inline-block;">
     <!-- <label for="start">Start date:</label>
@@ -183,7 +170,9 @@ function onLoad() {
     <br>
 
     <label for="shorthand">Shorthand for charge code:</label>
-    <input type="text" id="shorthand" name="shorthand">
+    <select id="shorthand" name="shorthand">
+        <option>Select a shorthand</option>
+    </select>
 
     <label for="charge_code">Charge Code:</label>
     <input type="text" id="charge_code" name="charge_code">
@@ -196,6 +185,7 @@ function onLoad() {
     <label for="description">Description:</label>
     <input type="text" id="description" name="description">
 
+    <script src="get_shorthand_charge_codes.js"></script>
 </div>
 <button type="button" onclick="post_record()">Post time</button>
 

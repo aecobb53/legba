@@ -6,7 +6,6 @@ import requests
 from datetime import datetime, timedelta
 
 def reset_database():
-    return
     payload = {'records': []}
     response = requests.post('http://hamster.nax.lol:8201/timecard-set', json=payload)
     return response.json()
@@ -46,21 +45,21 @@ def get_charge_code_data(url_base, save_file=True):
 
 x=1
 
-response = requests.post(
-    'http://hamster.nax.lol:8201/timecard-entry',
-    headers={'Content-type': 'application/json', 'Accept': 'text/plain'},
-    data=json.dumps({
-        # 'start_time': '08:00:00',
-        # 'end_time': '08:00:00',
-        'duration': '08',
-        # 'shorthand': 'fto',
-        'day': '2023-08-04',
-    })
-)
-try:
-    resp = response.json()
-except:
-    pass
+# response = requests.post(
+#     'http://hamster.nax.lol:8201/timecard-entry',
+#     headers={'Content-type': 'application/json', 'Accept': 'text/plain'},
+#     data=json.dumps({
+#         # 'start_time': '08:00:00',
+#         # 'end_time': '08:00:00',
+#         'duration': '08',
+#         # 'shorthand': 'fto',
+#         'day': '2023-08-04',
+#     })
+# )
+# try:
+#     resp = response.json()
+# except:
+#     pass
 x=1
 
 if True:
