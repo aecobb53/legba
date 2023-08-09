@@ -166,9 +166,9 @@ async def timecard_get(requests: Request):
         html_content = hf.read()
     return HTMLResponse(content=html_content, status_code=200)
 
-@app.get('/html/charge-codes')
+@app.get('/charge-codes')
 async def timecard_get(requests: Request):
-    logger.debug('GET on /html/charge-codes')
+    logger.debug('GET on /charge-codes')
     charge_code_dict = {k: getattr(ShorthandMapping, k).value for k in [ShorthandMapping(e).name for e in ShorthandMapping]}
     return charge_code_dict
 

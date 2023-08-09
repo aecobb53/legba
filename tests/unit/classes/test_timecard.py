@@ -183,11 +183,11 @@ class TestTimecard(UtilFunctions):
         dd = timecard.display_data(day='2023-06-16')
         x=1
 
-    def test_return(self):
-        # results = [e.value for e in ShorthandMapping]
-        # x=1
-        # for i in results:
-        #     a = ShorthandMapping(i)
-        #     b = ShorthandMapping(i).name
-        e = {k: getattr(ShorthandMapping, k).value for k in [ShorthandMapping(e).name for e in ShorthandMapping]}
-        x=1
+    # def test_return(self):
+    #     # results = [e.value for e in ShorthandMapping]
+    #     # x=1
+    #     # for i in results:
+    #     #     a = ShorthandMapping(i)
+    #     #     b = ShorthandMapping(i).name
+    #     e = {k: getattr(ShorthandMapping, k).value for k in [ShorthandMapping(e).name for e in ShorthandMapping]}
+    #     x=1

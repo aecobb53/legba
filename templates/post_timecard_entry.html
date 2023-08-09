@@ -145,6 +145,16 @@ async function put_record() {
 
 };
 
+function onLoad() {
+    console.log('onLoad()');
+    const response = fetch(`http://hamster.nax.lol:8201/html/charge-codes`, {
+        method: 'GET',
+    });
+    const chargeCodesByDate = response.json();
+    console.log('Hit home endpoint');
+    console.log(chargeCodesByDate);
+}
+
 // <meta http-equiv="refresh" content="delay_time; URL=new_website_url" />
 
 
@@ -152,7 +162,7 @@ async function put_record() {
 
 
 </head>
-<body>
+<body onload="onLoad();">
 <h2>Post timecard entry</h2>
 <div style="display: inline-block;">
     <!-- <label for="start">Start date:</label>
