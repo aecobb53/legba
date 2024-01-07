@@ -10,6 +10,7 @@ from typing import Dict
 
 from parse_ifsc import search_ifsc_data
 from classes.timecard import Timecard, POSTTimecardEntry, PUTTimecard, ShorthandMapping
+from classes.task_service import TaskServicePayload, save_task_service_payload, load_task_service_payload
 
 appname = 'legba'
 
@@ -172,3 +173,15 @@ async def timecard_get(requests: Request):
     charge_code_dict = {k: getattr(ShorthandMapping, k).value for k in [ShorthandMapping(e).name for e in ShorthandMapping]}
     return charge_code_dict
 
+# Task Service
+@app.post('/task-service')
+async def task_service_post(requests: Request, task_service_payload: TaskServicePayload):
+    logger.debug('POST on /task-service')
+    save_task_service_payload(content=task_service_payload, logit=logger)
+    return {'status': 'Saved'}
+
+@app.get('/task-service')
+async def task_service_get(requests: Request):
+    logger.debug('GET on /task-service')
+    obj = load_task_service_payload(logit=logger)
+    return obj.put()
